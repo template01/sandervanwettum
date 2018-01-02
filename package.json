@@ -20,10 +20,12 @@
 	"dependencies": {
 		"@nuxtjs/bulma": "^1.1.0",
 		"axios": "^0.16.2",
+		"bulma": "^0.6.1",
 		"lodash": "^4.17.4",
 		"node-sass": "^4.7.2",
 		"nuxt": "^1.0.0-rc11",
-		"sass-loader": "^6.0.6"
+		"sass-loader": "^6.0.6",
+		"vue-awesome-swiper": "^3.0.6"
 	},
 	"devDependencies": {
 		"babel-eslint": "^7.2.3",

@@ -24,17 +24,28 @@ module.exports = {
     }]
   },
 
+
+
   // mode: 'spa',
 
   css: [
     '~assets/marginpaddinghelpers.css',
-
-
+    '~assets/customBulma/custom/custom.css',
+    '~assets/fonts/okomito/stylesheet.css',
+    '~assets/main.css',
+    '~assets/font-awesome-4.7.0/css/font-awesome.min.css',
+    // 'swiper/dist/css/swiper.css',
+    '~assets/swiper.css',
 
   ],
 
+
+  router: {
+    middleware: ['closeReadmore']
+  },
+
   modules: [
-    '@nuxtjs/bulma'
+    //'@nuxtjs/bulma'
   ],
 
   plugins: [
@@ -43,6 +54,11 @@ module.exports = {
     '~/plugins/resizer.js',
     //GLOBAL MIXINS
     '~/mixins/computedresizerglobalmixin.js',
+
+    {
+      src: '~/plugins/vueawesomeswiper-plugin.js',
+      ssr: false
+    },
     // {
     //   src: '~/mixins/computedscrollbarwidth.js',
     //   ssr: false

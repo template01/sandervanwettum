@@ -1,5 +1,5 @@
 <template>
-<div class="xs-m-20 outerwrap">
+<div class="">
 
   <div class="columns is-gapless">
     <div class="column flex-column">
@@ -72,22 +72,22 @@
   </div>
 
 
-    <div class="columns is-gapless">
-      <div class="column flex-column">
-        <a href="" class="is-small is-horizontal-center is-vertical-center ">
+  <div class="columns is-gapless">
+    <div class="column flex-column">
+      <a href="" class="is-small is-horizontal-center is-vertical-center ">
           <img class="xs-p-20" src="/05.jpg"/>
         </a>
-        <a href="" class="is-medium is-horizontal-center is-vertical-center ">
+      <a href="" class="is-medium is-horizontal-center is-vertical-center ">
           <img class="xs-p-20" src="/10.jpg"/>
         </a>
-      </div>
-      <div class="column flex-column">
+    </div>
+    <div class="column flex-column">
 
-        <a href="" class="is-small is-horizontal-left is-vertical-center ">
+      <a href="" class="is-small is-horizontal-left is-vertical-center ">
             <img class="xs-p-20" src="/07.jpg"/>
           </a>
-      </div>
     </div>
+  </div>
 
 
   <!-- margin-top: auto;
@@ -97,11 +97,37 @@
 
 <script>
 // import queryresults from '~/components/index/queryresults.vue'
+import axios from 'axios'
+import {
+  mapGetters
+} from 'vuex'
+
 
 
 export default {
   components: {
     // queryresults
+  },
+
+  async asyncData({
+    params,
+    query,
+    error,
+    store,
+    route,
+    redirect
+  }) {
+    // GET PROJECT LIST START
+    if (store.state.projects.length == 0) {
+      const projectsRes = await axios.get(store.state.apiRoot + 'wp/v2/projects')
+      store.commit('SET_PROJECTS', projectsRes.data)
+    }
+    // GET PROJECT LIST END
+
+    store.commit('SET_MENU', false)
+    store.commit('SET_VIEWING', '')
+
+
   }
 }
 </script>
@@ -115,9 +141,12 @@ export default {
   margin-bottom: 0;
 }
 
+
+
 /*.column,.outerwrap{
   border: 1px dashed red;
 }*/
+
 a {
   display: block;
 }

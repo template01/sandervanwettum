@@ -1,0 +1,28 @@
+html{
+  font-size: 1.25rem;
+}
+
+
+.is-green{
+  background: #D4E4D9;
+}
+
+.is-peach{
+  background: #FFE0DA;
+}
+
+.is-gray{
+  background: #BFC2C0
+}
+
+.is-bluish{
+  background: #E9F5F5;
+}
+
+.is-darkgray{
+  background: #232323;
+}
+
+.is-white{
+  background: #FFFFFF;
+}
