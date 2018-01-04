@@ -30,7 +30,7 @@ module.exports = {
 
   css: [
     '~assets/marginpaddinghelpers.css',
-    '~assets/customBulma/custom/custom.css',
+    '~assets/bulmaCustom/custom/custom.css',
     '~assets/fonts/okomito/stylesheet.css',
     '~assets/main.css',
     '~assets/font-awesome-4.7.0/css/font-awesome.min.css',
