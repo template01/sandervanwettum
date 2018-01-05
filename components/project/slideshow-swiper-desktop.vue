@@ -20,11 +20,7 @@
 export default {
   data: function() {
     return {
-      banners: [
-        'https://placehold.it/100x400',
-        'https://placehold.it/200x400',
-        'https://placehold.it/300x400'
-      ],
+
       swiperOption: {
         loop: true,
         // slidesPerView: 'auto',
@@ -120,7 +116,6 @@ export default {
     .swiper-pagination {
 
       > .swiper-pagination-bullet {
-        background-color: red;
       }
     }
   }

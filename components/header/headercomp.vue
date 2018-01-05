@@ -1,29 +1,37 @@
 <template>
-<div class="xs-mb-20 xs-mt-40 xs-ml-40 xs-mr-40">
-  <div class="columns is-gabless">
-    <div class="column">
-      <p class="">
-        <span class="">
-        <span v-if="title ==='Sander van Wettum'">
-          <nuxt-link style="display:inline-block" to="/">Sander van Wettum</nuxt-link>
-        </span>
-        <span v-else v-html="title"></span>
-      </span>
-        <span v-if="secondtitle" class="xs-pr-10">
-        <span class="xs-pr-10 xs-pl-10 emdash-logostyle"><span></span></span> {{secondtitle}}
-        </span>
-        <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="icon === 'openreadmore' && isprojects" class="is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
-        <!-- <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="icon === 'openreadmore' && isprojects" class="is-pulled-right">Read more</span> -->
-        <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects" class="is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-        <span @click="$store.commit('SET_MENU', false); checkRedirct();" v-if="icon === 'close'" class="is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-        <span @click="$store.commit('SET_MENU', true)" v-if="icon === 'menu'" class="is-pulled-right menu-toggle-btn"><span></span><span></span><span></span></span>
-      </p>
+  <div>
+
+    <div v-if="!mobilereadmore" class="mb-20 mt-40 ml-40 mr-40">
+      <div class="columns is-gabless">
+        <div class="column">
+          <p class="header">
+            <span class="is-pulled-left">
+              <span v-if="title ==='Sander van Wettum'">
+                <nuxt-link style="display:inline-block; border:0" to="/">Sander van Wettum</nuxt-link>
+              </span>
+              <span v-else v-html="title"></span>
+              <span v-if="secondtitle" class="pr-10">
+                <br class="is-hidden-tablet"/>
+                <span class="is-hidden-mobile pr-10 pl-10 emdash-logostyle"><span></span></span>
+                <span v-html="secondtitle"></span>
+              </span>
+            </span>
+            <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="icon === 'openreadmore' && isprojects" class="is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
+            <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects" class="is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+            <span @click="$store.commit('SET_MENU', false); checkRedirct();" v-if="icon === 'close'" :class="scrsize" class="is-hidden-mobile is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+            <span @click="$store.commit('SET_MENU', false); " v-if="icon === 'close'" :class="scrsize"  class="is-hidden-tablet is-hidden-desktop is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+            <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+            <span @click="$store.commit('SET_MENU', true)" v-if="icon === 'menu'" class="is-pulled-right menu-toggle-btn"><span></span><span></span><span></span></span>
+            <span v-if="icon === 'loading'" class="is-pulled-right menu-toggle-btn"></span>
+          </p>
+        </div>
+      </div>
     </div>
+    <div v-else>
+      <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="isprojects" class="is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
+    </div>
+
   </div>
-
-
-
-</div>
 </template>
 
 <script>
@@ -31,7 +39,7 @@
 // import store from 'vuex'
 export default {
   components: {},
-  props: ['title', 'secondtitle', 'icon'],
+  props: ['title', 'secondtitle', 'icon','mobilereadmore','passedSrcsize'],
 
   computed: {
     isprojects: function() {
@@ -115,22 +123,27 @@ export default {
 
 
 <style lang="scss" scoped>
-p{
-  line-height: 1;
+
+.header{
+  width: 100%;
+  display: inline-block;
+}
+p {
+    line-height: 1;
 }
 
-.emdash-logostyle{
+.emdash-logostyle {
 
-      span {
-          background: #091540;
-          display: inline-block;
-          width: 20px;
-          height: 2px;
-          border-radius: 5px;
-          margin-bottom: 5px;
-          // -webkit-transition: all 0.5s linear;
-          // transition: all 0.3s linear;
-      }
+    span {
+        background: #091540;
+        display: inline-block;
+        width: 20px;
+        height: 2px;
+        border-radius: 5px;
+        margin-bottom: 5px;
+        // -webkit-transition: all 0.5s linear;
+        // transition: all 0.3s linear;
+    }
 }
 .menu-toggle-btn {
     // margin: 15px;
@@ -149,20 +162,20 @@ p{
         // -webkit-transition: all 0.5s linear;
         // transition: all 0.3s linear;
     }
-    &.menu-readmore{
-      span {
-          &:nth-child(1){
-              // display: none;
-              width: 85%;
+    &.menu-readmore {
+        span {
+            &:nth-child(1) {
+                // display: none;
+                width: 85%;
 
-          }
-          &:nth-child(2) {
-              width: 100%;
-          }
-          &:nth-child(3) {
-            width: 35%;
-          }
-      }
+            }
+            &:nth-child(2) {
+                width: 100%;
+            }
+            &:nth-child(3) {
+                width: 35%;
+            }
+        }
     }
     &.open {
         span {
@@ -182,23 +195,22 @@ p{
     }
 }
 
-.is-white-text{
-  color: #FFFFFF;
-  a{
+.is-white-text {
     color: #FFFFFF;
-  }
-
-  .emdash-logostyle{
-    span{
-      background:white;
+    a {
+        color: #FFFFFF;
     }
-  }
 
-  .menu-toggle-btn {
-    span{
-      background:white;
+    .emdash-logostyle {
+        span {
+            background: white;
+        }
     }
-  }
+
+    .menu-toggle-btn {
+        span {
+            background: white;
+        }
+    }
 }
-
 </style>

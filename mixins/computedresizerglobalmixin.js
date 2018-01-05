@@ -9,6 +9,7 @@ Vue.mixin({
     ...mapGetters({
       issmallscreen: "issmallscreen",
       isxlscreen: "isxlscreen",
+      scrsize: "scrsize",
       getscreensize: "getscreensize",
     }),
   }

@@ -1,18 +1,30 @@
 <template>
 <div>
-  <div class="columns is-gapless">
-    <div class="column">
-      <headercomp :class="nighttime ? 'is-white-text':''" :secondtitle="getviewing" :title="'Sander van Wettum'" :icon="'openreadmore'"></headercomp>
-    </div>
-    <div class="column">
-      <headercomp :class="nighttime ? 'is-white-text':''" :title="''" :icon="'menu'"></headercomp>
-    </div>
-  </div>
+  <div v-show="getappinitated">
 
-    <menucomp :projects="'ass'">
+    <div class="columns is-gapless">
+      <div class="column">
+        <!-- <template "v-if="scrsize === 'is-screen-l' || scrsize === 'is-screen-xl'""> -->
+        <div class="is-hidden-touch" :class="scrsize">
+          <headercomp :class="nighttime ? 'is-white-text':''" :secondtitle="getviewing" :passedSrcsize="scrsize" :title="'Sander van Wettum'" :icon="'openreadmore'"></headercomp>
+        </div>
+        <div class="is-hidden-desktop" :class="scrsize">
+          <headercomp :class="nighttime ? 'is-white-text':''" :secondtitle="getviewing" :passedSrcsize="scrsize" :title="'Sander van Wettum'" :icon="'menu'"></headercomp>
+        </div>
+      </div>
+      <!-- <div v-if="scrsize === 'is-screen-l' || scrsize === 'is-screen-xl'" class="column"> -->
+      <div class="column is-hidden-touch">
+        <headercomp :class="nighttime ? 'is-white-text':''" :title="''" :icon="'menu'"></headercomp>
+      </div>
+    </div>
+    <menucomp :projects="''">
     </menucomp>
 
-  <nuxt class="xs-mb-20 xs-ml-20 xs-mr-20" />
+    <nuxt class="mb-20 ml-20 mr-20" />
+  </div>
+  <div class="columns is-gapless" v-show="!getappinitated">
+    <headercomp :title="'Loading...'" :icon="'loading'"></headercomp>
+  </div>
 </div>
 </template>
 
@@ -33,8 +45,10 @@ export default {
   },
   computed: {
     ...mapGetters({
-      nighttime:'nighttime',
+      nighttime: 'nighttime',
       getviewing: "getviewing",
+      scrsize: "scrsize",
+      getappinitated: "getappinitated",
     }),
   },
 
@@ -42,7 +56,6 @@ export default {
 </script>
 
 
-<style>
-
+<style lang="scss">
 
 </style>

@@ -41,7 +41,7 @@ module.exports = {
 
 
   router: {
-    middleware: ['closeReadmore']
+    middleware: ['closeReadmore','closeMenu']
   },
 
   modules: [

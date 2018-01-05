@@ -7,17 +7,24 @@ export default ({
   if (isClient) {
     const detectScreensize = () => {
 
-      if (window.innerWidth < 960) {
-        store.commit('SET_SMALLSCREEN', true)
+      var mobileBreak = 768
+      var tabletBreak = 1215
+      var desktopBreak = 1920
 
-      } else {
-        store.commit('SET_SMALLSCREEN', false)
+      if (window.innerWidth < mobileBreak) {
+        store.commit('SET_SCREENSIZEFORMAT', 'is-screen-s')
+        // store.commit('SET_SMALLERMEDIUM', true)
+      }
+      if (window.innerWidth >= mobileBreak && window.innerWidth <= tabletBreak) {
+        store.commit('SET_SCREENSIZEFORMAT', 'is-screen-m')
       }
 
-      if (window.innerWidth > 1920) {
-        store.commit('SET_XLSCREEN', true)
-      } else {
-        store.commit('SET_XLSCREEN', false)
+      if (window.innerWidth >= tabletBreak && window.innerWidth <= desktopBreak) {
+        store.commit('SET_SCREENSIZEFORMAT', 'is-screen-l')
+      }
+
+      if (window.innerWidth > desktopBreak) {
+        store.commit('SET_SCREENSIZEFORMAT', 'is-screen-xl')
       }
 
       store.commit('SET_SCREENSIZE', window.innerWidth)
@@ -26,22 +33,13 @@ export default ({
 
     };
 
-
     detectScreensize();
 
     window.addEventListener('resize', _.debounce(detectScreensize, 100));
 
-
-    if (window.innerWidth < 960) {
-      store.commit('SET_SMALLSCREEN', true)
-    } else {
-      store.commit('SET_SMALLSCREEN', false)
-    }
-    if (window.innerWidth > 1920) {
-      store.commit('SET_XLSCREEN', true)
-    } else {
-      store.commit('SET_XLSCREEN', false)
-    }
+    window.setTimeout(function(){
+      store.commit('SET_APPINITIATED', true)
+    },100)
 
   }
 };

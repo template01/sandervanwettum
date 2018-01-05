@@ -2,7 +2,6 @@ html{
   font-size: 1.25rem;
 }
 
-
 .is-green{
   background: #D4E4D9;
 }
@@ -25,4 +24,33 @@ html{
 
 .is-white{
   background: #FFFFFF;
+}
+
+.nuxt-link-exact-active{
+  border-bottom: 2px solid #091540;
+}
+
+.is-underlined{
+  border-bottom: 2px solid #091540;
+}
+
+
+.is-half{
+  width: 50%;
+}
+
+.is-third{
+  width: 33.33333%;
+}
+
+
+@media (max-width: 1181px) {
+  .is-hidden-m{
+    display: none;
+  }
+}
+@media (min-width: 1180px) {
+  .is-hidden-l{
+    display: none;
+  }
 }

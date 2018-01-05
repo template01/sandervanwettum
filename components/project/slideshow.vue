@@ -1,26 +1,30 @@
 <template>
 <div class="project" :class="nighttime ? 'is-darkgray':''">
-  <!-- <div class="xs-mb-20 xs-mt-20 xs-ml-20 xs-mr-20"> -->
+  <!-- <div class="mb-20 mt-20 ml-20 mr-20"> -->
   <!-- {{slides}} -->
   <div>
     <!-- {{slide.caption}} -->
   </div>
-  <slideshowswiper :slides="slides"></slideshowswiper>
-  <div class="nighttime xs-mb-40 xs-mr-40">
+  <!-- <slideshowswiperdesktop  :slides="slides"></slideshowswiperdesktop> -->
+  <!-- <slideshowswiperdesktop class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop> -->
+  <slideshowswipermobile :slides="slides"></slideshowswipermobile>
+  <div class="nighttime mb-40 mr-40">
     <div v-if="nighttime" @click="$store.commit('SET_NIGHTTIME', false);" class="fullCircle is-white"></div>
     <div v-else @click="$store.commit('SET_NIGHTTIME', true);" class="halfCircle is-darkgray"></div>
   </div>
 </div>
 </template>
 <script>
-import slideshowswiper from '~/components/project/slideshow-swiper.vue'
+import slideshowswiperdesktop from '~/components/project/slideshow-swiper-desktop.vue'
+import slideshowswipermobile from '~/components/project/slideshow-swiper-mobile.vue'
 import {
   mapGetters
 } from 'vuex'
 
 export default {
   components: {
-    slideshowswiper
+    slideshowswiperdesktop,
+    slideshowswipermobile
   },
   computed: {
     ...mapGetters({

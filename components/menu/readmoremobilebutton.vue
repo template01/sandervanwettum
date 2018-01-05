@@ -1,0 +1,38 @@
+<template>
+  <div class="is-hidden-l readmoremobilebutton mb-40 mt-40 ml-40" :class="scrsize">
+    <headercomp :mobilereadmore="'true'" ></headercomp>
+  </div>
+
+</template>
+
+<script>
+import {
+  mapGetters
+} from 'vuex'
+
+import headercomp from '~/components/header/headercomp.vue'
+
+
+
+export default {
+
+
+
+  components: {
+    headercomp,
+  },
+
+}
+
+
+</script>
+
+
+
+<style scoped lang="scss">
+.readmoremobilebutton{
+  position: absolute;
+  bottom:0px;
+  left: 0px;
+}
+</style>

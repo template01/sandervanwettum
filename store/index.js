@@ -2,15 +2,19 @@ export const state = () => ({
   locales: ['en', 'nl'],
   locale: 'nl',
   n: 1,
-  smallscreen: false,
   menu:false,
+  appinitated:false,
+  news:false,
+  newscontent:[],
   readmore:false,
   nighttime:false,
   screensize: 0,
+  // xlscreen: false,
+  // smallscreen: false,
+  screensizeformat: '',
   projects:[],
-  xlscreen: false,
   apiRoot: 'https://api.sandervanwettum.com/?rest_route=/',
-  viewing: ''
+  viewing: '',
 })
 
 //
@@ -26,6 +30,10 @@ export const state = () => ({
 
 export const getters = {
 
+  getappinitated(state) {
+    return state.appinitated
+  },
+
   getprojects(state) {
     return state.projects
   },
@@ -35,16 +43,29 @@ export const getters = {
   },
 
 
-  issmallscreen(state) {
-    return state.smallscreen
-  },
-
-  isxlscreen(state) {
-    return state.xlscreen
-  },
+  // issmallscreen(state) {
+  //   return state.smallscreen
+  // },
+  //
+  // isxlscreen(state) {
+  //   return state.xlscreen
+  // },
   getscreensize(state) {
     return state.screensize
   },
+
+  scrsize(state){
+    return state.screensizeformat
+  },
+
+  getnews(state) {
+    return state.news
+  },
+
+  getnewscontent(state) {
+    return state.newscontent
+  },
+
   getmenu(state) {
     return state.menu
   },
@@ -59,6 +80,10 @@ export const getters = {
 }
 
 export const mutations = {
+
+  SET_APPINITIATED(state, toggle) {
+    state.appinitated = toggle;
+  },
 
   SET_NIGHTTIME(state, toggle) {
     state.nighttime = toggle;
@@ -76,20 +101,32 @@ export const mutations = {
     state.readmore = toggle;
   },
 
+  SET_NEWS(state, toggle) {
+    state.news = toggle;
+  },
+  SET_NEWSCONTENT(state, data) {
+    state.newscontent = data;
+  },
+
   SET_MENU(state, toggle) {
     state.menu = toggle;
   },
 
-  SET_SMALLSCREEN(state, small) {
-    state.smallscreen = small;
-  },
 
   SET_SCREENSIZE(state, screensize) {
     state.screensize = screensize;
   },
 
-  SET_XLSCREEN(state, xl) {
-    state.xlscreen = xl;
+  SET_SCREENSIZEFORMAT(state, screensizeformat) {
+    state.screensizeformat = screensizeformat;
+  },
 
-  }
+  // SET_SMALLSCREEN(state, small) {
+  //   state.smallscreen = small;
+  // },
+
+  // SET_XLSCREEN(state, xl) {
+  //   state.xlscreen = xl;
+  //
+  // }
 }

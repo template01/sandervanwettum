@@ -12,6 +12,7 @@ export default {
     textcolumn
   },
 
+
     async asyncData({
         params,
         query,
@@ -29,7 +30,9 @@ export default {
       // GET PROJECT LIST END
 
       //show menu
-      store.commit('SET_MENU', true)
+      if(store.state.screensizeformat != 'is-screen-s' ){
+        store.commit('SET_MENU', true)
+      }
 
       const contentLangRes = await axios.get(store.state.apiRoot+'wp/v2/pages&slug='+params.slug)
       console.log(contentLangRes.data.length)

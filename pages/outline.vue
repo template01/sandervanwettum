@@ -1,16 +1,16 @@
 <template>
-<div class="xs-m-20 outerwrap">
+<div class="m-20 outerwrap">
 
   <div class="columns is-gapless">
     <div class="column flex-column">
       <a href="" class="is-large is-horizontal-center is-vertical-center ">
-        <img class="xs-p-20" src="/10.jpg"/>
+        <img class="p-20" src="/10.jpg"/>
       </a>
     </div>
     <div class="column flex-column">
 
       <a href="" class="is-small is-horizontal-left is-vertical-center ">
-          <img class="xs-p-20" src="/07.jpg"/>
+          <img class="p-20" src="/07.jpg"/>
         </a>
     </div>
   </div>
@@ -18,15 +18,15 @@
   <div class="columns is-gapless">
     <div class="column flex-column">
       <a href="" class="is-medium is-horizontal-right is-vertical-center">
-          <img class="xs-p-20" src="/08.jpg"/>
+          <img class="p-20" src="/08.jpg"/>
         </a>
       <a href="" class="is-medium is-horizontal-center is-vertical-center ">
-          <img class="xs-p-20" src="/10.jpg"/>
+          <img class="p-20" src="/10.jpg"/>
         </a>
     </div>
     <div class="column flex-column">
       <a href="" class="is-medium is-horizontal-left is-vertical-bottom ">
-          <img class="xs-p-20" src="/07.jpg"/>
+          <img class="p-20" src="/07.jpg"/>
         </a>
     </div>
   </div>
@@ -35,18 +35,18 @@
   <div class="columns is-gapless">
     <div class="column flex-column">
       <a href="" class="is-small is-horizontal-right is-vertical-bottom">
-          <img class="xs-p-20" src="/02.jpg"/>
+          <img class="p-20" src="/02.jpg"/>
         </a>
       <a href="" class="is-small is-horizontal-left is-vertical-center ">
-          <img class="xs-p-20" src="/05.jpg"/>
+          <img class="p-20" src="/05.jpg"/>
         </a>
     </div>
     <div class="column flex-column">
       <a href="" class="is-large is-horizontal-left is-vertical-center ">
-          <img class="xs-p-20" src="/09.jpg"/>
+          <img class="p-20" src="/09.jpg"/>
         </a>
       <a href="" class="is-medium is-horizontal-center is-vertical-center ">
-          <img class="xs-p-20" src="/10.jpg"/>
+          <img class="p-20" src="/10.jpg"/>
       </a>
     </div>
   </div>
@@ -55,18 +55,18 @@
   <div class="columns is-gapless">
     <div class="column flex-column">
       <a href="" class="is-small is-horizontal-right is-vertical-top">
-            <img class="xs-p-20" src="/03.jpg"/>
+            <img class="p-20" src="/03.jpg"/>
           </a>
       <a href="" class="is-medium is-horizontal-left is-vertical-top ">
-            <img class="xs-p-20" src="/06.jpg"/>
+            <img class="p-20" src="/06.jpg"/>
           </a>
     </div>
     <div class="column flex-column">
       <a href="" class="is-small is-horizontal-left is-vertical-center ">
-            <img class="xs-p-20" src="/00.jpg"/>
+            <img class="p-20" src="/00.jpg"/>
           </a>
       <a href="" class="is-small is-horizontal-right is-vertical-bottom ">
-            <img class="xs-p-20" src="/04.jpg"/>
+            <img class="p-20" src="/04.jpg"/>
         </a>
     </div>
   </div>
@@ -75,16 +75,16 @@
     <div class="columns is-gapless">
       <div class="column flex-column">
         <a href="" class="is-small is-horizontal-center is-vertical-center ">
-          <img class="xs-p-20" src="/05.jpg"/>
+          <img class="p-20" src="/05.jpg"/>
         </a>
         <a href="" class="is-medium is-horizontal-center is-vertical-center ">
-          <img class="xs-p-20" src="/10.jpg"/>
+          <img class="p-20" src="/10.jpg"/>
         </a>
       </div>
       <div class="column flex-column">
 
         <a href="" class="is-small is-horizontal-left is-vertical-center ">
-            <img class="xs-p-20" src="/07.jpg"/>
+            <img class="p-20" src="/07.jpg"/>
           </a>
       </div>
     </div>

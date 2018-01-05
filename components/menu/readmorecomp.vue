@@ -1,8 +1,8 @@
 <template>
   <transition name="slide-fade">
-  <div v-if="getreadmore" class="readmorecomp is-peach">
+  <div v-if="getreadmore" class="readmorecomp is-peach" :class="scrsize">
     <headercomp :title="'Description'" :secondtitle="getviewing" :icon="'closereadmore'"></headercomp>
-    <div class="xs-mb-20 xs-mt-40 xs-ml-40 xs-mr-40" v-html="description">
+    <div class="mb-20 mt-40 ml-40 mr-40" v-html="description">
     </div>
   </div>
 
@@ -46,7 +46,7 @@ export default {
 
 
 
-<style scoped>
+<style scoped lang="scss">
 
 
 /* Enter and leave animations can use different */
@@ -61,7 +61,7 @@ export default {
 /* .slide-fade-leave-active below version 2.1.8 */ {
   transform: translateY(-10px);
   opacity: 0;
-  filter:blur(100);
+  /* filter:blur(100); */
 }
 
 
@@ -73,6 +73,9 @@ export default {
   height: 100%;
   left: 0;
   top:0;
+  &.is-screen-s{
+    width: 100%;
+  }
 }
 a{
   display: block;

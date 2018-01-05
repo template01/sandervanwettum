@@ -2,6 +2,9 @@
 <div class="">
   <!-- <textcolumn :content="content"></textcolumn> -->
   <readmorecomp :description="description"></readmorecomp>
+  <!-- {{srcsize}} -->
+
+  <readmoremobilebutton></readmoremobilebutton>
   <slideshow :slides="slides"></slideshow>
 </div>
 </template>
@@ -9,12 +12,14 @@
 <script>
 import textcolumn from '~/components/text/textcolumn.vue'
 import readmorecomp from '~/components/menu/readmorecomp.vue'
+import readmoremobilebutton from '~/components/menu/readmoremobilebutton.vue'
 import slideshow from '~/components/project/slideshow.vue'
 import axios from 'axios'
 export default {
   components: {
     textcolumn,
     readmorecomp,
+    readmoremobilebutton,
     slideshow
   },
 
@@ -26,6 +31,16 @@ export default {
         route,
         redirect
     }) {
+
+      // GET ANY NEW NEWS
+      if (!store.state.news) {
+        const newsRes = await axios.get(store.state.apiRoot + 'wp/v2/news')
+        var shownews = newsRes.data[0].acf.showhide
+        if (shownews === true) {
+          store.commit('SET_NEWS', true)
+          store.commit('SET_NEWSCONTENT', newsRes.data[0])
+        }
+      }
 
       // GET PROJECT LIST START
       if (store.state.projects.length == 0) {

@@ -1,17 +1,13 @@
 <template>
-<div class="xs-mb-20 xs-mt-20 xs-ml-20 xs-mr-20">
-  <div class="columns is-gapless">
-    <div class="column" v-html="content.content.rendered">
-    </div>
-
-    <div class="column">
-    </div>
-    <div class="column">
-    </div>
-  </div>
-
-
+  <div >
+<div class="is-hidden-tablet mb-10">
+  <div v-html="content.content.rendered"></div>
 </div>
+<div class="is-hidden-mobile mb-40 mt-20 ml-20 mr-20">
+  <div class="is-half pr-40" v-html="content.content.rendered"></div>
+</div>
+</div>
+
 </template>
 
 <script>
@@ -26,6 +22,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped lang="scss">
 
 </style>
