@@ -1,13 +1,7 @@
 <template>
-<div class="project" :class="nighttime ? 'is-darkgray':''">
-  <!-- <div class="mb-20 mt-20 ml-20 mr-20"> -->
-  <!-- {{slides}} -->
-  <div>
-    <!-- {{slide.caption}} -->
-  </div>
-  <!-- <slideshowswiperdesktop  :slides="slides"></slideshowswiperdesktop> -->
-  <!-- <slideshowswiperdesktop class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop> -->
-  <slideshowswipermobile :slides="slides"></slideshowswipermobile>
+<div class="projectSlideshow p-40 " :class="nighttime ? 'is-darkgray':''">
+    <slideshowswiperdesktop class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop>
+  <slideshowswipermobile class="is-hidden-desktop"  :slides="slides"></slideshowswipermobile>
   <div class="nighttime mb-40 mr-40">
     <div v-if="nighttime" @click="$store.commit('SET_NIGHTTIME', false);" class="fullCircle is-white"></div>
     <div v-else @click="$store.commit('SET_NIGHTTIME', true);" class="halfCircle is-darkgray"></div>
@@ -35,7 +29,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.project {
+.projectSlideshow {
     position: absolute;
     top: 0;
     left: 0;

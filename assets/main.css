@@ -11,7 +11,7 @@ html{
 }
 
 .is-gray{
-  background: #BFC2C0
+  background: #d5d6d5;
 }
 
 .is-bluish{
@@ -24,6 +24,10 @@ html{
 
 .is-white{
   background: #FFFFFF;
+}
+
+.is-lightblue{
+  background: #e9f5f5;
 }
 
 .nuxt-link-exact-active{

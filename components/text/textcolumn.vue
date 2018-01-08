@@ -1,6 +1,6 @@
 <template>
-  <div >
-<div class="is-hidden-tablet mb-10">
+  <div class="">
+<div class="is-hidden-tablet mb-10 ">
   <div v-html="content.content.rendered"></div>
 </div>
 <div class="is-hidden-mobile mb-40 mt-20 ml-20 mr-20">

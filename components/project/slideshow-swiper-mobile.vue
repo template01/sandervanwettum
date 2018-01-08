@@ -1,30 +1,21 @@
 <template>
-<!-- You can find this swiper instance object in current component by the "mySwiper"  -->
 <div v-swiper:mySwiper="swiperOption" class="swiper-outer">
 
-<!-- {{mobileSlides}} -->
   <div class="swiper-wrapper">
-    <!-- {{slides}} -->
-    <!-- {{mobileSlides}} -->
-    <div class="swiper-slide " v-for="slide in test">
-      <!-- {{slide.caption}} -->
-      <!-- <div class="columns"> -->
-        <!-- <div class="column Aligner"> -->
-          {{slide}}
-          <!-- <img :src="slide.sizes.large"> -->
-        <!-- </div> -->
-      <!-- </div> -->
+    <div class="swiper-slide " v-for="slide in mobileSlides">
+      <div class="columns">
+          <img :src="slide.sizes.large">
+      </div>
     </div>
   </div>
-  <!-- <div class="swiper-pagination swiper-pagination-bullets"></div> -->
 </div>
+
 </template>
 
 <script>
 export default {
   data: function() {
     return {
-      test:[1,2,3,4],
 
       swiperOption: {
         loop: true,
@@ -56,10 +47,13 @@ export default {
 
       var mobileSlides = []
       var slides = this.slides
+      console.log(slides)
+      console.log(slides.length)
       for (var i = 0, len = slides.length; i < len; i++) {
         // someFn();
-        // console.log(slides[i].single_slide.length)
-        for (var iSingle = 0, len = slides[i].single_slide.length; iSingle < len; iSingle++) {
+        console.log('goooo')
+        console.log(slides[i].single_slide.length)
+        for (var iSingle = 0, lenSingle = slides[i].single_slide.length; iSingle < lenSingle; iSingle++) {
           // someFn();
           // console.log(slides[i].single_slide[iSingle])
           mobileSlides.push(slides[i].single_slide[iSingle])
@@ -83,8 +77,6 @@ export default {
   },
   mounted(){
     // this.mobileSlides()
-    this.mySwiper.slideNext()
-    
   }
 
 }
@@ -126,7 +118,7 @@ export default {
     img {
         margin: 0 auto;
         width: auto;
-        // max-width: calc(100% - 30px);
+        max-width: calc(100% - 30px);
         max-height: calc(100vh - 220px);
         display: block;
     }

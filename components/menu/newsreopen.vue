@@ -2,7 +2,7 @@
 
 <transition name="slide-fade">
 
-  <div v-if="!getnews"class="newsReopen">
+  <div v-if="!getnews && getnewscontent.length>0"class="newsReopen">
     <div class="mb-40 mt-40 ml-40 mr-40">
       <a class="is-underlined" @click="$store.commit('SET_NEWS', true)">News</a>
     </div>

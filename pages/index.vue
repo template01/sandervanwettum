@@ -124,6 +124,7 @@ export default {
       if (shownews === true) {
         store.commit('SET_NEWS', true)
         store.commit('SET_NEWSCONTENT', newsRes.data[0])
+        console.log(store.state.newscontent)
       }
     }
 

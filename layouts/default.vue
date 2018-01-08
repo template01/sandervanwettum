@@ -1,6 +1,6 @@
 <template>
 <div>
-  <div v-show="getappinitated">
+  <div :style="getappinitated ? {'opacity':'1'}:{'opacity':'0'}">
 
     <div class="columns is-gapless">
       <div class="column">
@@ -22,7 +22,7 @@
 
     <nuxt class="mb-20 ml-20 mr-20" />
   </div>
-  <div class="columns is-gapless" v-show="!getappinitated">
+  <div class="appinitLoading columns is-gapless" v-show="!getappinitated">
     <headercomp :title="'Loading...'" :icon="'loading'"></headercomp>
   </div>
 </div>
@@ -57,5 +57,8 @@ export default {
 
 
 <style lang="scss">
-
+.appinitLoading{
+  position: absolute;
+  top:0;
+}
 </style>

@@ -65,7 +65,7 @@ a {
   position: absolute;
   bottom: 0;
   width: 100%;
-  min-height: 50%;
+  max-height: 50%;
 }
 
 </style>

@@ -3,11 +3,26 @@
   <div v-swiper:mySwiper="swiperOption" class="swiper-outer">
     <div class="swiper-wrapper">
       <!-- {{slides}} -->
-      <div class="swiper-slide" v-for="slide in slides">
+      <div class="swiper-slide " v-for="slide in slides">
         <!-- {{slide.caption}} -->
-        <div class="columns">
-          <div class="column Aligner" v-for="singleslide in slide.single_slide">
-            <img :src="singleslide.sizes.large">
+        <div class="columns is-gapless">
+          <div class="column Aligner" v-for="(singleslide,index) in slide.single_slide">
+            <template v-if="slide.single_slide.length > 1">
+              <span class="mr-20" v-if="index === 0">
+                <img :src="singleslide.sizes.large">
+              </span>
+              <span class="ml-20" v-else-if="index === slide.single_slide.length - 1">
+                <img :src="singleslide.sizes.large">
+              </span>
+              <span class="mr-20 ml-20" v-else>
+                <img :src="singleslide.sizes.large">
+              </span>
+            </template>
+            <template v-else>
+              <span >
+                <img :src="singleslide.sizes.large">
+              </span>
+            </template>
           </div>
         </div>
       </div>
@@ -61,6 +76,10 @@ export default {
 
   },
 
+  mounted(){
+    // alert('hye')
+    // this.mySwiper.slideNext()
+  }
 }
 </script>
 
@@ -71,7 +90,8 @@ export default {
 <style lang="scss" scoped>
 
 .swiper-outer{
-   height: 100%;
+   height: calc(100% - 80px);
+   margin-top: 40px;
 }
 
   .swiper-wrapper {
@@ -102,7 +122,7 @@ export default {
     img{
       margin: 0 auto;
       width: auto;
-      max-height: calc(100vh - 220px);
+      max-height: calc(100vh - 160px);
       display: block;
     }
 
