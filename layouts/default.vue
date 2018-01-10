@@ -1,6 +1,8 @@
 <template>
 <div>
-  <div :style="getappinitated ? {'opacity':'1'}:{'opacity':'0'}">
+  <transition name="fade">
+
+  <div id="appInner" :style="getappinitated ? {'opacity':'1'}:{'opacity':'0'}">
 
     <div class="columns is-gapless">
       <div class="column">
@@ -22,9 +24,13 @@
 
     <nuxt class="mb-20 ml-20 mr-20" />
   </div>
+</transition>
+
+  <transition name="fade">
   <div class="appinitLoading columns is-gapless" v-show="!getappinitated">
-    <headercomp :title="'Loading...'" :icon="'loading'"></headercomp>
+    <headercomp :icon="'loading'"></headercomp>
   </div>
+</transition>
 </div>
 </template>
 
@@ -56,7 +62,16 @@ export default {
 </script>
 
 
-<style lang="scss">
+<style lang="scss" scoped>
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .2s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+.appInner{
+  overflow: hidden;
+}
 .appinitLoading{
   position: absolute;
   top:0;

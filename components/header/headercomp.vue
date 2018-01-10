@@ -1,37 +1,47 @@
 <template>
-  <div>
+<div>
 
-    <div v-if="!mobilereadmore" class="mb-20 mt-40 ml-40 mr-40">
-      <div class="columns is-gabless">
-        <div class="column">
-          <p class="header">
-            <span class="is-pulled-left">
-              <span v-if="title ==='Sander van Wettum'">
-                <nuxt-link style="display:inline-block; border:0" to="/">Sander van Wettum</nuxt-link>
+  <div v-if="!mobilereadmore" class="headerComp mb-20 mt-40 ml-40 mr-40">
+    <div class="columns is-gabless">
+      <div class="column">
+        <p class="is-size-6 header">
+          <template v-if="icon != 'loading'">
+              <span class="is-pulled-left pr-40">
+                <span v-if="title ==='Sander van Wettum'">
+                  <nuxt-link style="display:inline-block; border:0" to="/">Sander van Wettum</nuxt-link>
+                </span>
+                <span v-else v-html="title"></span>
+                <span v-if="secondtitle" class="pr-10">
+                  <br class="is-hidden-tablet"/>
+                  <span class="is-hidden-mobile pr-10 pl-10 emdash-logostyle"><span></span></span>
+                  <span v-html="secondtitle"></span>
+                </span>
               </span>
-              <span v-else v-html="title"></span>
-              <span v-if="secondtitle" class="pr-10">
-                <br class="is-hidden-tablet"/>
-                <span class="is-hidden-mobile pr-10 pl-10 emdash-logostyle"><span></span></span>
-                <span v-html="secondtitle"></span>
+              <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="icon === 'openreadmore' && isprojects" class="is-absoulute-icon is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_MENU', false); checkRedirct();" v-if="icon === 'close'" :class="scrsize" class="is-hidden-mobile is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_MENU', false); " v-if="icon === 'close'" :class="scrsize"  class="is-hidden-tablet is-hidden-desktop is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_MENU', true)" v-if="icon === 'menu'" class="is-hidden-mobile is-pulled-right menu-toggle-btn"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_MENU', true)" v-if="icon === 'menu'" class="is-absoulute-icon is-hidden-desktop is-pulled-right menu-toggle-btn"><span></span><span></span><span></span></span>
+            </template>
+          <template v-else>
+            <span class="is-pulled-left pr-40">
+              <span>
+                <span style="display:inline-block; border:0" to="/">Loading...</span >
               </span>
             </span>
-            <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="icon === 'openreadmore' && isprojects" class="is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
-            <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects" class="is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-            <span @click="$store.commit('SET_MENU', false); checkRedirct();" v-if="icon === 'close'" :class="scrsize" class="is-hidden-mobile is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-            <span @click="$store.commit('SET_MENU', false); " v-if="icon === 'close'" :class="scrsize"  class="is-hidden-tablet is-hidden-desktop is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-            <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-            <span @click="$store.commit('SET_MENU', true)" v-if="icon === 'menu'" class="is-pulled-right menu-toggle-btn"><span></span><span></span><span></span></span>
-            <span v-if="icon === 'loading'" class="is-pulled-right menu-toggle-btn"></span>
-          </p>
-        </div>
+            </template>
+
+        </p>
       </div>
     </div>
-    <div v-else>
-      <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="isprojects" class="is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
-    </div>
-
   </div>
+  <div v-else>
+    <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="isprojects" class="is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
+  </div>
+
+</div>
 </template>
 
 <script>
@@ -39,7 +49,7 @@
 // import store from 'vuex'
 export default {
   components: {},
-  props: ['title', 'secondtitle', 'icon','mobilereadmore','passedSrcsize'],
+  props: ['title', 'secondtitle', 'icon', 'mobilereadmore', 'passedSrcsize'],
 
   computed: {
     isprojects: function() {
@@ -123,13 +133,27 @@ export default {
 
 
 <style lang="scss" scoped>
+.headerComp {
+    position: relative;
 
-.header{
-  width: 100%;
-  display: inline-block;
+    .is-absoulute-icon {
+        position: absolute;
+        right: 0;
+    }
+}
+
+.header {
+    width: 100%;
+    display: inline-block;
 }
 p {
     line-height: 1;
+}
+
+.loading {
+    span {
+        // visibility: hidden;
+    }
 }
 
 .emdash-logostyle {

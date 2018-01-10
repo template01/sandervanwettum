@@ -41,7 +41,31 @@ module.exports = {
 
 
   router: {
-    middleware: ['closeReadmore','closeMenu']
+    middleware: ['closeReadmore', 'closeMenu'],
+    scrollBehavior: function(to, from, savedPosition) {
+      if(to.path === '/about' && from.path === '/about'){
+
+      }else{
+
+        if (savedPosition) {
+          window.setTimeout(function() {
+            window.scroll(0, savedPosition.y)
+          }, 10)
+          window.setTimeout(function() {
+            window.scroll(0, savedPosition.y)
+          }, 50)
+          window.setTimeout(function() {
+            window.scroll(0, savedPosition.y)
+          }, 100)
+          // return savedPosition
+        } else {
+          return {
+            x: 0,
+            y: 0
+          }
+        }
+      }
+    }
   },
 
   modules: [
@@ -59,6 +83,14 @@ module.exports = {
       src: '~/plugins/vueawesomeswiper-plugin.js',
       ssr: false
     },
+    {
+      src: '~/plugins/documentoffset.js',
+      ssr: false
+    },
+    {
+      src: '~/plugins/smoothscroll.js',
+      ssr: false
+    },
     // {
     //   src: '~/mixins/computedscrollbarwidth.js',
     //   ssr: false
@@ -69,8 +101,9 @@ module.exports = {
    ** Customize the progress bar color
    */
   loading: {
-    color: '#3B8070'
+    color: '#091540'
   },
+
   /*
    ** Build configuration
    */

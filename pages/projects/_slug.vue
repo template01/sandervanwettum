@@ -37,7 +37,9 @@ export default {
         const newsRes = await axios.get(store.state.apiRoot + 'wp/v2/news')
         var shownews = newsRes.data[0].acf.showhide
         if (shownews === true) {
-          store.commit('SET_NEWS', true)
+          if(!store.state.appinitated){
+            store.commit('SET_NEWS', true)
+          }
           store.commit('SET_NEWSCONTENT', newsRes.data[0])
         }
       }
@@ -62,7 +64,8 @@ export default {
       console.log(contentLangRes.data.length)
       if(contentLangRes.data.length>0){
 
-        store.commit('SET_VIEWING', 'Project: ' + contentLangRes.data[0].title.rendered)
+        store.commit('SET_VIEWING', '' + contentLangRes.data[0].title.rendered)
+        // store.commit('SET_VIEWING', 'Project: ' + contentLangRes.data[0].title.rendered)
 
         return {
           content: contentLangRes.data[0],

@@ -1,5 +1,5 @@
 <template>
-  <div class="is-hidden-l readmoremobilebutton mb-40 mt-40 ml-40" :class="scrsize">
+  <div class="is-hidden-desktop readmoremobilebutton mb-40 mt-40 ml-40" :class="scrsize">
     <headercomp :mobilereadmore="'true'" ></headercomp>
   </div>
 

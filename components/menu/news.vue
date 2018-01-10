@@ -1,14 +1,12 @@
 <template>
-
 <transition name="slide-fade">
 
   <div v-if="getnews" class="news is-gray">
     <headercomp :title="'News'" :secondtitle="getnewscontent.title.rendered" :icon="'news'"></headercomp>
-    <div class="mb-40 mt-40 ml-40 mr-40" v-html="getnewscontent.content.rendered">
+    <div class="mb-40 mt-40 ml-40 mr-40 is-size-6" v-html="getnewscontent.content.rendered">
     </div>
   </div>
 </transition>
-
 </template>
 
 <script>
@@ -32,7 +30,7 @@ export default {
 
 
 
-<style scoped>
+<style scoped lang="scss">
 /* Enter and leave animations can use different */
 
 /* durations and timing functions.              */
@@ -56,16 +54,20 @@ export default {
   /* filter:blur(100); */
 }
 
+
 a {
   display: block;
 }
 
 .news {
+  overflow-y: auto;
+  &::-webkit-scrollbar {
+      display: none;
+  }
   -webkit-backface-visibility: hidden;
   position: absolute;
   bottom: 0;
   width: 100%;
   max-height: 50%;
 }
-
 </style>

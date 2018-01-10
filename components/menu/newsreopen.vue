@@ -1,14 +1,22 @@
 <template>
 
-<transition name="slide-fade">
+<transition-group name="slide-fade">
 
-  <div v-if="!getnews && getnewscontent.length>0"class="newsReopen">
-    <div class="mb-40 mt-40 ml-40 mr-40">
-      <a class="is-underlined" @click="$store.commit('SET_NEWS', true)">News</a>
+  <template  v-if="!getnews && getnewscontent.content.rendered.length>0">
+
+    <div v-bind:key="1" class="newsReopenDesktop is-hidden-touch ">
+      <div class="mb-40 mt-40 ml-40 mr-40">
+        <a class="is-size-6 is-underlined" @click="$store.commit('SET_NEWS', true)">News</a>
+      </div>
     </div>
-  </div>
+    <div v-bind:key="2" class="is-hidden-desktop newsReopenMobile">
+      <div class=" mb-40 ml-40 mr-40">
+        <a class="is-size-6 is-underlined" @click="$store.commit('SET_NEWS', true)">News</a>
+      </div>
+    </div>
+  </template>
 
-</transition>
+</transition-group>
 
 </template>
 
@@ -61,8 +69,11 @@ a {
   display: block;
 }
 
-.newsReopen {
+.newsReopenDesktop {
   position: absolute;
   bottom: 0;
+}
+.newsReopenMobile {
+  display: inline-block;
 }
 </style>

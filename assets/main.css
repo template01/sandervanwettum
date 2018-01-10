@@ -1,60 +1,72 @@
-html{
+html {
   font-size: 1.25rem;
 }
 
-.is-green{
+@media screen and (max-width: 768px) {
+  .is-size-6 {
+    font-size: 0.8rem !important;
+  }
+}
+
+.is-green {
   background: #D4E4D9;
 }
 
-.is-peach{
+.is-peach {
   background: #FFE0DA;
 }
 
-.is-gray{
+.is-peach-opacity {
+  background: rgba(255, 224, 218, 0.75);
+}
+
+.is-gray {
   background: #d5d6d5;
 }
 
-.is-bluish{
+.is-bluish {
   background: #E9F5F5;
 }
 
-.is-darkgray{
+.is-darkgray {
   background: #232323;
 }
 
-.is-white{
+.is-white {
   background: #FFFFFF;
 }
 
-.is-lightblue{
+.is-lightblue {
   background: #e9f5f5;
 }
 
-.nuxt-link-exact-active{
+.nuxt-link-exact-active {
   border-bottom: 2px solid #091540;
 }
 
-.is-underlined{
+.is-underlined {
   border-bottom: 2px solid #091540;
 }
 
-
-.is-half{
+.is-half {
   width: 50%;
 }
 
-.is-third{
+.is-third {
   width: 33.33333%;
 }
 
-
-@media (max-width: 1181px) {
-  .is-hidden-m{
-    display: none;
+@keyframes opacityfadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }
-@media (min-width: 1180px) {
-  .is-hidden-l{
-    display: none;
-  }
+
+.fadein-on-load {
+  opacity: 0;
+  animation: 0.4s ease-in-out opacityfadein;
+  animation-fill-mode: forwards;
 }

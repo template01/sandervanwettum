@@ -1,12 +1,14 @@
 <template>
-<div class="projectSlideshow p-40 " :class="nighttime ? 'is-darkgray':''">
+  <div class="projectSlideshow p-40 " :class="nighttime ? 'is-darkgray':''">
+    <!-- <transition name="slide-fade"> -->
     <slideshowswiperdesktop class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop>
-  <slideshowswipermobile class="is-hidden-desktop"  :slides="slides"></slideshowswipermobile>
-  <div class="nighttime mb-40 mr-40">
-    <div v-if="nighttime" @click="$store.commit('SET_NIGHTTIME', false);" class="fullCircle is-white"></div>
-    <div v-else @click="$store.commit('SET_NIGHTTIME', true);" class="halfCircle is-darkgray"></div>
+    <slideshowswipermobile class="is-hidden-desktop" :slides="slides"></slideshowswipermobile>
+  <!-- </transition> -->
+    <div class="nighttime mb-40 mr-40">
+      <div v-if="nighttime" @click="$store.commit('SET_NIGHTTIME', false);" class="fullCircle is-white"></div>
+      <div v-else @click="$store.commit('SET_NIGHTTIME', true);" class="halfCircle is-darkgray"></div>
+    </div>
   </div>
-</div>
 </template>
 <script>
 import slideshowswiperdesktop from '~/components/project/slideshow-swiper-desktop.vue'
@@ -29,6 +31,21 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all 3s ease;
+}
+.slide-fade-leave-active {
+  transition: all 8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ {
+  transform: translateX(10px);
+  opacity: 0;
+}
+
 .projectSlideshow {
     position: absolute;
     top: 0;
@@ -62,9 +79,9 @@ export default {
         width: 20px;
         cursor: pointer;
         border-radius: 100%;
-        -webkit-box-shadow: 0 0 1px 0px white;
-        -moz-box-shadow: 0 0 1px 0px white;
-        box-shadow: 0 0 1px 0px white;
+        -webkit-box-shadow: 0 0 1px 0 white;
+        -moz-box-shadow: 0 0 1px 0 white;
+        box-shadow: 0 0 1px 0 white;
     }
 
 }

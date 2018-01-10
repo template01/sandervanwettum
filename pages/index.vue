@@ -1,111 +1,27 @@
 <template>
 <div class="">
-  <div class="columns is-gapless">
-    <div class="column flex-column">
-      <a href="" class="is-large is-horizontal-center is-vertical-center ">
-        <img class="p-20" src="/10.jpg"/>
-      </a>
-    </div>
-    <div class="column flex-column">
 
-      <a href="" class="is-small is-horizontal-left is-vertical-center ">
-          <img class="p-20" src="/07.jpg"/>
-        </a>
-    </div>
-  </div>
-
-  <div class="columns is-gapless">
-    <div class="column flex-column">
-      <a href="" class="is-medium is-horizontal-right is-vertical-center">
-          <img class="p-20" src="/08.jpg"/>
-        </a>
-      <a href="" class="is-medium is-horizontal-center is-vertical-center ">
-          <img class="p-20" src="/10.jpg"/>
-        </a>
-    </div>
-    <div class="column flex-column">
-      <a href="" class="is-medium is-horizontal-left is-vertical-bottom ">
-          <img class="p-20" src="/07.jpg"/>
-        </a>
-    </div>
-  </div>
-
-
-  <div class="columns is-gapless">
-    <div class="column flex-column">
-      <a href="" class="is-small is-horizontal-right is-vertical-bottom">
-          <img class="p-20" src="/02.jpg"/>
-        </a>
-      <a href="" class="is-small is-horizontal-left is-vertical-center ">
-          <img class="p-20" src="/05.jpg"/>
-        </a>
-    </div>
-    <div class="column flex-column">
-      <a href="" class="is-large is-horizontal-left is-vertical-center ">
-          <img class="p-20" src="/09.jpg"/>
-        </a>
-      <a href="" class="is-medium is-horizontal-center is-vertical-center ">
-          <img class="p-20" src="/10.jpg"/>
-      </a>
-    </div>
-  </div>
-
-
-  <div class="columns is-gapless">
-    <div class="column flex-column">
-      <a href="" class="is-small is-horizontal-right is-vertical-top">
-            <img class="p-20" src="/03.jpg"/>
-          </a>
-      <a href="" class="is-medium is-horizontal-left is-vertical-top ">
-            <img class="p-20" src="/06.jpg"/>
-          </a>
-    </div>
-    <div class="column flex-column">
-      <a href="" class="is-small is-horizontal-left is-vertical-center ">
-            <img class="p-20" src="/00.jpg"/>
-          </a>
-      <a href="" class="is-small is-horizontal-right is-vertical-bottom ">
-            <img class="p-20" src="/04.jpg"/>
-        </a>
-    </div>
-  </div>
-
-
-  <div class="columns is-gapless">
-    <div class="column flex-column">
-      <a href="" class="is-small is-horizontal-center is-vertical-center ">
-          <img class="p-20" src="/05.jpg"/>
-        </a>
-      <a href="" class="is-medium is-horizontal-center is-vertical-center ">
-          <img class="p-20" src="/10.jpg"/>
-        </a>
-    </div>
-    <div class="column flex-column">
-
-      <a href="" class="is-small is-horizontal-left is-vertical-center ">
-            <img class="p-20" src="/07.jpg"/>
-          </a>
-    </div>
-  </div>
-
-
-  <!-- margin-top: auto;
-      margin-bottom: auto; -->
+  <indeximages :content="indexImagesContent"></indeximages>
+  <!-- {{content}} -->
 </div>
 </template>
 
 <script>
-// import queryresults from '~/components/index/queryresults.vue'
+import indeximages from '~/components/index/indeximages.vue'
 import axios from 'axios'
 import {
   mapGetters
 } from 'vuex'
 
-
-
 export default {
   components: {
-    // queryresults
+    indeximages,
+  },
+  computed: {
+    ...mapGetters({
+      getmenu: "getmenu",
+      scrsize: "scrsize",
+    })
   },
 
   async asyncData({
@@ -122,7 +38,9 @@ export default {
       const newsRes = await axios.get(store.state.apiRoot + 'wp/v2/news')
       var shownews = newsRes.data[0].acf.showhide
       if (shownews === true) {
-        store.commit('SET_NEWS', true)
+        if(!store.state.appinitated){
+          store.commit('SET_NEWS', true)
+        }
         store.commit('SET_NEWSCONTENT', newsRes.data[0])
         console.log(store.state.newscontent)
       }
@@ -138,75 +56,33 @@ export default {
     store.commit('SET_MENU', false)
     store.commit('SET_VIEWING', '')
 
+    // GET PROJECT LIST START
+      const indexImagesRes = await axios.get(store.state.apiRoot + 'wp/v2/pages&slug=index')
+      return {
+        // confetti : pop,
+        indexImagesContent: indexImagesRes.data[0],
+      }
 
-  }
+
+  },
+  // 
+  // watch:{
+  //   getmenu: function(){
+  //     console.log(this.getmenu)
+  //     if(this.getmenu){
+  //       if(this.scrsize === 'is-screen-s' || window.innerHeight<768){
+  //         document.getElementsByTagName('html')[0].style.overflowY = "hidden";
+  //       }
+  //     }else{
+  //       if(this.scrsize === 'is-screen-s' || window.innerHeight<768){
+  //         document.getElementsByTagName('html')[0].style.overflowY = "auto";
+  //       }
+  //     }
+  //   }
+  // }
 }
 </script>
 
 <style>
-* {
-  box-sizing: border-box;
-}
 
-.columns.is-gapless:not(:last-child) {
-  margin-bottom: 0;
-}
-
-
-
-/*.column,.outerwrap{
-  border: 1px dashed red;
-}*/
-
-a {
-  display: block;
-}
-
-img {
-  display: block;
-}
-
-.is-small {
-  width: 50%;
-}
-
-.is-medium {
-  width: 75%;
-}
-
-.is-large {
-  width: 100%;
-}
-
-.flex-column {
-  display: flex;
-  justify-content: flex-start;
-  flex-direction: column;
-}
-
-.is-horizontal-center {
-  margin-right: auto;
-  margin-left: auto;
-}
-
-.is-horizontal-left {
-  margin-right: auto;
-}
-
-.is-horizontal-right {
-  margin-left: auto;
-}
-
-.is-vertical-center {
-  margin-top: auto;
-  margin-bottom: auto;
-}
-
-.is-vertical-bottom {
-  margin-top: auto;
-}
-
-.is-vertical-top {
-  margin-bottom: auto;
-}
 </style>

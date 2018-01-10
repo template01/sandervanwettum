@@ -1,19 +1,21 @@
 <template>
 <transition name="slide-fade">
   <div v-if="getmenu" class="menucomp is-green" :class="scrsize">
-    <!-- {{scrsize.length>0}} -->
     <headercomp :title="'Menu'" :icon="'close'"></headercomp>
     <div class="mb-20 mt-40 ml-40 mr-40">
-      <nuxt-link to="/">Index</nuxt-link>
-      <span>
+      <nuxt-link class="is-size-6" to="/">Index</nuxt-link>
+      <span class="is-size-6">
         Projects:
       </span>
       <div class="projects mb-20 mt-20 ml-20">
-        <nuxt-link v-for="project in getprojects" :to="'/projects/'+project.slug" v-html='project.title.rendered'></nuxt-link>
+        <nuxt-link  class="is-size-6" v-for="project in getprojects" :to="'/projects/'+project.slug" v-html='project.title.rendered'></nuxt-link>
       </div>
-      <nuxt-link to="/info">Info</nuxt-link>
-      <nuxt-link to="/cv">CV</nuxt-link>
-      <nuxt-link to="/contact">Contact</nuxt-link>
+      <template>
+        <nuxt-link  class="is-size-6" to="/about?part=info">Info</nuxt-link>
+        <nuxt-link  class="is-size-6" to="/about?part=cv" >CV</nuxt-link>
+        <nuxt-link  class="is-size-6" to="/about?part=contact">Contact</nuxt-link>
+      </template>
+
     </div>
     <news></news>
     <newsreopen></newsreopen>
@@ -35,6 +37,7 @@ export default {
       getprojects: "getprojects",
       getmenu: "getmenu",
       getnews: "getnews",
+      getappinitated: "getappinitated",
     })
   },
   components: {
@@ -43,8 +46,8 @@ export default {
     newsreopen,
   },
 
-  mounted(){
-    if(this.scrsize === 'is-screen-s'){
+  mounted() {
+    if (this.scrsize === 'is-screen-s') {
       this.$store.commit('SET_MENU', false)
     }
   },
@@ -60,37 +63,38 @@ export default {
 /* durations and timing functions.              */
 
 .slide-fade-enter-active {
-  transition: all .2s ease;
+    transition: all 0.2s ease;
 }
 
 .slide-fade-leave-active {
-  transition: all .2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    transition: all 0.2s cubic-bezier(1.0, 0.5, 0.8, 1.0);
 }
-
-.slide-fade-enter,
-.slide-fade-leave-to
 /* .slide-fade-leave-active below version 2.1.8 */
-
-  {
-  transform: translateY(-10px);
-  opacity: 0;
-  /* filter:blur(100); */
+.slide-fade-enter,
+.slide-fade-leave-to {
+    transform: translateY(-10px);
+    opacity: 0;
+    /* filter:blur(100); */
 }
 
 .menucomp {
-  z-index: 2;
-  width: 50%;
-  position: fixed;
-  display: block;
-  height: 100%;
-  right: 0;
-  top: 0;
-  &.is-screen-s{
-    width: 100%;
-  }
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    z-index: 2;
+    width: 50%;
+    position: fixed;
+    display: block;
+    height: 100%;
+    right: 0;
+    top: 0;
+    &.is-screen-s {
+        width: 100%;
+    }
 }
 
 a {
-  display: table;
+    display: table;
 }
 </style>

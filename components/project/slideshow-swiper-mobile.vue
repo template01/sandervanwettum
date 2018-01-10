@@ -119,7 +119,7 @@ export default {
         margin: 0 auto;
         width: auto;
         max-width: calc(100% - 30px);
-        max-height: calc(100vh - 220px);
+        max-height: calc(100vh - 100px);
         display: block;
     }
 
