@@ -15,13 +15,13 @@
           <div class="column Aligner" v-for="(singleslide,index) in slide.single_slide">
             <template v-if="slide.single_slide.length > 1">
               <span class="mr-20" v-if="index === 0">
-                <img :src="singleslide.sizes.large">
+                <img :src="singleslide.sizes.medium">
               </span>
               <span class="ml-20" v-else-if="index === slide.single_slide.length - 1">
-                <img :src="singleslide.sizes.large">
+                <img :src="singleslide.sizes.medium">
               </span>
               <span class="mr-20 ml-20" v-else>
-                <img :src="singleslide.sizes.large">
+                <img :src="singleslide.sizes.medium">
               </span>
             </template>
             <template v-else>
@@ -58,8 +58,8 @@ export default {
         // centeredSlides: true,
         // spaceBetween: 30,
         effect: 'fade',
-        preloadImages: false,
-        lazyLoading: true,
+        preloadImages: true,
+        // lazyLoading: true,
         wrapperClass: 'swiper-wrapper',
         slideClass: 'swiper-slide',
         // setTranslate:
