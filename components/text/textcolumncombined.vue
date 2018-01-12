@@ -1,16 +1,13 @@
 <template>
 <div class="fadein-on-load">
   <!-- v-if="scrsize === 'is-screen-s'" -->
-  {{scrsize}}
   <div  class="is-hidden-tablet mb-10 ">
-    mobile
     <div class="mb-40" v-for="item in content" :id="scrsize === 'is-screen-s' ? item.slug : ''">
       <p class="is-size-6" v-html="item.title.rendered"></p>
       <div class="is-size-6" v-html="item.content.rendered"></div>
     </div>
   </div>
   <div  class="is-hidden-mobile mb-40 mt-20 ml-20 mr-20">
-    desktop
     <div class="mb-40" v-for="item in content" :id="scrsize != 'is-screen-s' ? item.slug : ''">
       <div class="is-half pr-40">
         <p class="is-size-6" v-html="item.title.rendered">

@@ -3,9 +3,7 @@
 
   <div class="swiper-wrapper">
     <div class="swiper-slide " v-for="slide in mobileSlides">
-      <div class="columns">
           <img :src="slide.sizes.large">
-      </div>
     </div>
   </div>
 </div>
@@ -22,6 +20,9 @@ export default {
         // slidesPerView: 'auto',
         // centeredSlides: true,
         // spaceBetween: 30,
+        effect: 'fade',
+        preloadImages: false,
+        lazyLoading: true,
         wrapperClass: 'swiper-wrapper',
         slideClass: 'swiper-slide',
         // pagination: {
@@ -87,52 +88,77 @@ export default {
 </style>
 
 <style lang="scss" scoped>
+
 .swiper-outer {
-    height: 100%;
+
+    height: calc(100% - 80px);
+    margin-top: 40px;
+
+    .swiper-nav {
+        height: 100%;
+        width: 50%;
+        position: absolute;
+        z-index: 2;
+
+        &.swiper-nav-next {
+            // display: none;
+            right: 0;
+            cursor: e-resize;
+        }
+        &.swiper-nav-prev {
+            // display: none;
+            cursor: w-resize;
+        }
+
+    }
 }
 
 .swiper-wrapper {
 
-    .Aligner {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .Aligner-item {
-        max-width: 50%;
-    }
-
-    .Aligner-item--top {
-        align-self: flex-start;
-    }
-
-    .Aligner-item--bottom {
-        align-self: flex-end;
-    }
+    // .Aligner {
+    //     display: flex;
+    //     align-items: center;
+    //     justify-content: center;
+    // }
+    //
+    // .Aligner-item {
+    //     max-width: 50%;
+    // }
+    //
+    // .Aligner-item--top {
+    //     align-self: flex-start;
+    // }
+    //
+    // .Aligner-item--bottom {
+    //     align-self: flex-end;
+    // }
 
     // height: calc(100vh - 100px);
     width: 100%;
     // z-index: -1;
 
     img {
-        margin: 0 auto;
-        width: auto;
-        max-width: calc(100% - 30px);
-        max-height: calc(100vh - 100px);
-        display: block;
+        // margin: 0 auto;
+        // width: auto;
+        // max-width: 100%;
+        // max-height: calc(100vh - 160px);
+        // display: block;
+        max-height: 100%;
     }
 
-    .swiper-slide {
-        text-align: center;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+        .swiper-slide {
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0 !important;
+        }
+        .swiper-slide-active {
+            opacity: 1 !important;
+        }
+        .swiper-pagination {
 
-    .swiper-pagination {
-
-        > .swiper-pagination-bullet {}
-    }
+            > .swiper-pagination-bullet {}
+        }
 }
 </style>

@@ -8,7 +8,7 @@
           <template v-if="icon != 'loading'">
               <span class="is-pulled-left pr-40">
                 <span v-if="title ==='Sander van Wettum'">
-                  <nuxt-link style="display:inline-block; border:0" to="/">Sander van Wettum</nuxt-link>
+                  <nuxt-link style="display:inline-block; border:0" class="ignoreborder" to="/">Sander van Wettum</nuxt-link>
                 </span>
                 <span v-else v-html="title"></span>
                 <span v-if="secondtitle" class="pr-10">
@@ -133,6 +133,12 @@ export default {
 
 
 <style lang="scss" scoped>
+
+.ignoreborder{
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
 .headerComp {
     position: relative;
 

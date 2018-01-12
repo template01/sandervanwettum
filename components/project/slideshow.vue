@@ -6,7 +6,9 @@
   <!-- </transition> -->
     <div class="nighttime mb-40 mr-40">
       <div v-if="nighttime" @click="$store.commit('SET_NIGHTTIME', false);" class="fullCircle is-white"></div>
-      <div v-else @click="$store.commit('SET_NIGHTTIME', true);" class="halfCircle is-darkgray"></div>
+      <div class="halfCircleOuter" v-else @click="$store.commit('SET_NIGHTTIME', true);" >
+        <div class="halfCircle is-darkgray"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -61,11 +63,14 @@ export default {
     position: absolute;
     z-index: 1;
 
+
+    .halfCircleOuter{
+      cursor: pointer;
+    }
     .halfCircle {
         display: inline-block;
         height: 10px;
         width: 20px;
-        cursor: pointer;
         transform: rotate(45deg);
         border-bottom-left-radius: 20px;
         border-bottom-right-radius: 20px;

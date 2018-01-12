@@ -1,17 +1,19 @@
 <template>
 <!-- You can find this swiper instance object in current component by the "mySwiper"  -->
-<div v-swiper:mySwiper="swiperOption" class="swiper-outer fadein-on-load">
-  <div class="swiper-nav swiper-nav-prev" @click="prevSlide()">
-  </div>
-  <div class="swiper-nav swiper-nav-next" @click="nextSlide()">
-  </div>
-  <div class="swiper-wrapper">
-    <!-- {{slides}} -->
-    <div class="swiper-slide " v-for="slide in slides">
-      <!-- {{slide.caption}} -->
-      <div class="columns is-gapless">
-        <div class="column Aligner" v-for="(singleslide,index) in slide.single_slide">
-          <template v-if="slide.single_slide.length > 1">
+<span>
+
+  <div v-swiper:mySwiper="swiperOption" class="swiper-outer fadein-on-load">
+    <div class="swiper-nav swiper-nav-prev" @click="prevSlide()">
+    </div>
+    <div class="swiper-nav swiper-nav-next" @click="nextSlide()">
+    </div>
+    <div class="swiper-wrapper">
+      <!-- {{slides}} -->
+      <div class="swiper-slide " v-for="slide in slides">
+        <!-- {{slide.caption}} -->
+        <div class="columns is-gapless">
+          <div class="column Aligner" v-for="(singleslide,index) in slide.single_slide">
+            <template v-if="slide.single_slide.length > 1">
               <span class="mr-20" v-if="index === 0">
                 <img :src="singleslide.sizes.large">
               </span>
@@ -22,22 +24,33 @@
                 <img :src="singleslide.sizes.large">
               </span>
             </template>
-          <template v-else>
+            <template v-else>
               <span >
                 <img :src="singleslide.sizes.large">
               </span>
             </template>
+          </div>
         </div>
       </div>
     </div>
   </div>
-</div>
+  <div class="m-40 slideshow-caption">
+    <span class="pr-40">{{slideIndex + 1}} / {{slides.length}} </span>
+    <span class=""> {{caption}} </span>
+  </div>
+</span>
 </template>
 
 <script>
+
 export default {
+
   data: function() {
+    var vm = this
     return {
+
+      slideIndex:'',
+      caption:'',
 
       swiperOption: {
         loop: true,
@@ -45,6 +58,8 @@ export default {
         // centeredSlides: true,
         // spaceBetween: 30,
         effect: 'fade',
+        preloadImages: false,
+        lazyLoading: true,
         wrapperClass: 'swiper-wrapper',
         slideClass: 'swiper-slide',
         // setTranslate:
@@ -53,8 +68,15 @@ export default {
         //   dynamicBullets: true
         // },
         on: {
+
+          init(){
+            // vm.test='hey'
+            // console.log(vm.test)
+          },
           slideChange() {
             console.log('onSlideChangeEnd', this);
+            vm.slideIndex = this.realIndex
+            vm.caption = vm.slides[0].caption
           },
           tap() {
             console.log('onTap', this);
@@ -68,11 +90,11 @@ export default {
       return this.$refs.mySwiper.swiper
     }
   },
-  props: ['slides', ],
+  props: ['slides'],
   methods: {
     nextSlide: function() {
       this.mySwiper.slideNext()
-      console.log('next')
+      // console.log(this.mySwiper)
     },
     prevSlide: function() {
       this.mySwiper.slidePrev()
@@ -83,6 +105,12 @@ export default {
 
   mounted() {
     // alert('hye')
+    console.log(this.mySwiper)
+    console.log(this.mySwiper)
+    console.log(this.mySwiper)
+    console.log(this.mySwiper)
+    console.log(this.mySwiper)
+    console.log(this.mySwiper)
     // this.mySwiper.slideNext()
   }
 }
@@ -93,7 +121,11 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-
+.slideshow-caption{
+  position: absolute;
+  bottom: 0;
+  left:0;
+}
 .swiper-outer {
 
     height: calc(100% - 80px);

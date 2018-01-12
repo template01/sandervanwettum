@@ -5,6 +5,7 @@
 
 $desktop: 1280px;
 
+$body-line-height: 1.4;
 
 $text: #091540;
 $link: #091540;
@@ -45,4 +46,3 @@ $colors: map-merge($colors, $addColors);
 
 // 6. Import the rest of Bulma
 @import "../bulma";
-

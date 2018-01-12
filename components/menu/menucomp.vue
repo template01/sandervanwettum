@@ -7,8 +7,8 @@
       <span class="is-size-6">
         Projects:
       </span>
-      <div class="projects mb-20 mt-20 ml-20">
-        <nuxt-link  class="is-size-6" v-for="project in getprojects" :to="'/projects/'+project.slug" v-html='project.title.rendered'></nuxt-link>
+      <div class="projects projectswrapper mb-20 mt-20 ml-20">
+        <nuxt-link  class="is-size-6" v-for="project in getprojects" :to="'/projects/'+project.slug" ><span class="is-underlined" v-html='project.title.rendered'></span></nuxt-link>
       </div>
       <template>
         <nuxt-link  class="is-size-6" to="/about?part=info">Info</nuxt-link>
@@ -96,5 +96,15 @@ export default {
 
 a {
     display: table;
+}
+
+.projectswrapper{
+
+  .nuxt-link-exact-active{
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+  }
+
 }
 </style>

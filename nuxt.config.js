@@ -91,6 +91,10 @@ module.exports = {
       src: '~/plugins/smoothscroll.js',
       ssr: false
     },
+    {
+      src: '~/plugins/lazyload.js',
+      ssr: false
+    },
     // {
     //   src: '~/mixins/computedscrollbarwidth.js',
     //   ssr: false
