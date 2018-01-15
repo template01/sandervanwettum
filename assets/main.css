@@ -2,6 +2,13 @@ html {
   font-size: 1.25rem;
 }
 
+::selection {
+  background:  #091540; /* WebKit/Blink Browsers */
+}
+::-moz-selection {
+  background:  #091540; /* Gecko Browsers */
+}
+
 @media screen and (max-width: 768px) {
   .is-size-6 {
     font-size: 0.9rem !important;
@@ -15,7 +22,6 @@ html {
   html {
     font-size: 1.4rem !important;
   }
-
 }
 
 .is-green {
@@ -38,6 +44,15 @@ html {
   background: #E9F5F5;
 }
 
+.is-darkblue {
+  background: #091540;
+}
+
+.is-darkblue-text {
+  color: #091540;
+}
+
+
 .is-darkgray {
   background: #232323;
 }
@@ -46,17 +61,21 @@ html {
   background: #FFFFFF;
 }
 
+.is-white-text {
+  color: #FFFFFF;
+}
+
 .is-lightblue {
   background: #e9f5f5;
 }
 
 a:active {
-    outline: none !important;
-}
-a {
-    outline: none !important;
+  outline: none !important;
 }
 
+a {
+  outline: none !important;
+}
 
 .nuxt-link-exact-active {
   -webkit-box-shadow: 0px -2px 0px 0px #091540 inset;
@@ -93,14 +112,26 @@ a {
   animation-fill-mode: forwards;
 }
 
+img {
+  -webkit-user-select: none;
+  /* Safari 3.1+ */
+  -moz-user-select: none;
+  /* Firefox 2+ */
+  -ms-user-select: none;
+  /* IE 10+ */
+  user-select: none;
+  /* Standard syntax */
+}
 
 img[lazy=loading] {
   /*your style here*/
   opacity: 0
 }
+
 img[lazy=error] {
   /*your style here*/
 }
+
 img[lazy=loaded] {
   opacity: 1;
   transition: opacity 0.4s;

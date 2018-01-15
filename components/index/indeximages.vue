@@ -7,8 +7,8 @@
 
       <nuxt-link v-for="item in colI" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
         <div class="imginner">
-          <img class="" v-lazy="pickrandomimage(item).sizes.large"  :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
-          <span class="is-size-6 imgcaption p-20 is-peach-opacity">{{item.linkto.post_title}}</span>
+          <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large"  :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
+          <span class="is-size-6 imgcaption p-40 is-peach-opacity">{{item.linkto.post_title}}</span>
         </div>
       </nuxt-link>
 
@@ -16,8 +16,8 @@
     <div class="second column flex-column">
       <nuxt-link v-for="item in colII" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
         <div class="imginner">
-          <img class="" v-lazy="pickrandomimage(item).sizes.large"  :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
-          <span class="is-size-6 imgcaption p-20 is-peach-opacity">{{item.linkto.post_title}}</span>
+          <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large"  :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
+          <span class="is-size-6 imgcaption p-40 is-peach-opacity">{{item.linkto.post_title}}</span>
         </div>
       </nuxt-link>
 
@@ -30,7 +30,7 @@
       <!-- {{imagecontent[0]}} -->
       <nuxt-link v-for="itemsingle in item" :to="'projects/'+itemsingle.linkto.post_name" class="pb-20" :class="">
         <div class="mobilelayout">
-          <img class="is-horizontal-center" v-lazy="pickrandomimage(itemsingle).sizes.medium">
+          <img class="slidein-on-load is-horizontal-center" v-lazy="pickrandomimage(itemsingle).sizes.medium">
           <!-- <span class="imgcaption p-20 is-peach-opacity">{{itemsingle.linkto.post_title}}</span> -->
         </div>
       </nuxt-link>
@@ -118,6 +118,25 @@ export default {
 .columns.is-gapless:not(:last-child) {
     margin-bottom: 0;
 }
+
+
+@keyframes slidein {
+  0% {
+    transform: translateY(5px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+
+img[lazy=loaded] {
+  &.slidein-on-load{
+    animation: 1s ease-in-out slidein;
+    animation-fill-mode: forwards;
+  }
+}
+
 
 .imginner {
     position: relative;

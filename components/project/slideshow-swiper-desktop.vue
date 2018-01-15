@@ -3,10 +3,10 @@
 <span>
 
   <div v-swiper:mySwiper="swiperOption" class="swiper-outer fadein-on-load">
-    <div class="swiper-nav swiper-nav-prev" @click="prevSlide()">
+    <!-- <div class="swiper-nav swiper-nav-prev" @click="prevSlide()">
     </div>
     <div class="swiper-nav swiper-nav-next" @click="nextSlide()">
-    </div>
+    </div> -->
     <div class="swiper-wrapper">
       <!-- {{slides}} -->
       <div class="swiper-slide " v-for="slide in slides">
@@ -15,68 +15,60 @@
           <div class="column Aligner" v-for="(singleslide,index) in slide.single_slide">
             <template v-if="slide.single_slide.length > 1">
               <span class="mr-20" v-if="index === 0">
-                <img :src="singleslide.sizes.medium">
+                <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"></div>
               </span>
-              <span class="ml-20" v-else-if="index === slide.single_slide.length - 1">
-                <img :src="singleslide.sizes.medium">
+<span class="ml-20" v-else-if="index === slide.single_slide.length - 1">
+                <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"></div>
               </span>
-              <span class="mr-20 ml-20" v-else>
-                <img :src="singleslide.sizes.medium">
+<span class="mr-20 ml-20" v-else>
+                <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"></div>
               </span>
-            </template>
-            <template v-else>
-              <span >
-                <img :src="singleslide.sizes.large">
+</template>
+<template v-else>
+<span>
+                <img :data-src="singleslide.sizes.large"  class="swiper-lazy"><div class="swiper-lazy-preloader"></div>
               </span>
-            </template>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="m-40 slideshow-caption">
-    <span class="pr-40">{{slideIndex + 1}} / {{slides.length}} </span>
-    <span class=""> {{caption}} </span>
-  </div>
+</template>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="m-40 slideshow-caption" :class="nighttime ? 'is-white-text':''">
+  <span class="pr-40 ">{{slideIndex + 1}} / {{slides.length}} </span>
+  <span class=""> {{caption}} </span>
+</div>
 </span>
 </template>
 
 <script>
-
 export default {
 
   data: function() {
     var vm = this
     return {
 
-      slideIndex:'',
-      caption:'',
+      slideIndex: '',
+      caption: '',
 
       swiperOption: {
+        lazy: true,
+        loadPrevNext: true,
         loop: true,
-        // slidesPerView: 'auto',
-        // centeredSlides: true,
-        // spaceBetween: 30,
         effect: 'fade',
         preloadImages: true,
-        // lazyLoading: true,
         wrapperClass: 'swiper-wrapper',
         slideClass: 'swiper-slide',
-        // setTranslate:
-        // pagination: {
-        //   el: '.swiper-pagination',
-        //   dynamicBullets: true
-        // },
         on: {
 
-          init(){
+          init() {
             // vm.test='hey'
             // console.log(vm.test)
           },
           slideChange() {
             console.log('onSlideChangeEnd', this);
             vm.slideIndex = this.realIndex
-            vm.caption = vm.slides[0].caption
+            vm.caption = vm.slides[vm.slideIndex].caption
           },
           tap() {
             console.log('onTap', this);
@@ -90,7 +82,7 @@ export default {
       return this.$refs.mySwiper.swiper
     }
   },
-  props: ['slides'],
+  props: ['slides', 'nighttime'],
   methods: {
     nextSlide: function() {
       this.mySwiper.slideNext()
@@ -121,10 +113,18 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-.slideshow-caption{
-  position: absolute;
-  bottom: 0;
-  left:0;
+.slideshow-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    -webkit-user-select: none;
+    /* Safari 3.1+ */
+    -moz-user-select: none;
+    /* Firefox 2+ */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Standard syntax */
 }
 .swiper-outer {
 
@@ -179,6 +179,13 @@ export default {
         width: auto;
         max-height: calc(100vh - 160px);
         display: block;
+    }
+    .swiper-lazy {
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .swiper-lazy-loaded{
+      opacity: 1;
     }
 
     .swiper-slide {

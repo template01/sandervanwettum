@@ -1,8 +1,8 @@
 <template>
   <div class="projectSlideshow p-40 " :class="nighttime ? 'is-darkgray':''">
     <!-- <transition name="slide-fade"> -->
-    <slideshowswiperdesktop class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop>
-    <slideshowswipermobile class="is-hidden-desktop" :slides="slides"></slideshowswipermobile>
+    <slideshowswiperdesktop :nighttime="nighttime" class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop>
+    <slideshowswipermobile :nighttime="nighttime" class="is-hidden-desktop" :slides="slides"></slideshowswipermobile>
   <!-- </transition> -->
     <div class="nighttime mb-40 mr-40">
       <div v-if="nighttime" @click="$store.commit('SET_NIGHTTIME', false);" class="fullCircle is-white"></div>

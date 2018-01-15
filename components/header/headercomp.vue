@@ -19,9 +19,9 @@
               </span>
               <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="icon === 'openreadmore' && isprojects" class="is-absoulute-icon is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-              <span @click="$store.commit('SET_MENU', false); checkRedirct();" v-if="icon === 'close'" :class="scrsize" class="is-hidden-mobile is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-              <span @click="$store.commit('SET_MENU', false); " v-if="icon === 'close'" :class="scrsize"  class="is-hidden-tablet is-hidden-desktop is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-              <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_MENU', false); checkRedirct();" v-if="icon === 'close'" :class="scrsize" class="is-absoulute-icon is-hidden-mobile is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_MENU', false); " v-if="icon === 'close'" :class="scrsize"  class="is-absoulute-icon is-hidden-tablet is-hidden-desktop is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_MENU', true)" v-if="icon === 'menu'" class="is-hidden-mobile is-pulled-right menu-toggle-btn"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_MENU', true)" v-if="icon === 'menu'" class="is-absoulute-icon is-hidden-desktop is-pulled-right menu-toggle-btn"><span></span><span></span><span></span></span>
             </template>
@@ -134,14 +134,21 @@ export default {
 
 <style lang="scss" scoped>
 
-.ignoreborder{
-  -webkit-box-shadow: none;
-  -moz-box-shadow: none;
-  box-shadow: none;
+.ignoreborder {
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
 }
 .headerComp {
     position: relative;
-
+    -webkit-user-select: none;
+    /* Safari 3.1+ */
+    -moz-user-select: none;
+    /* Firefox 2+ */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+    /* Standard syntax */
     .is-absoulute-icon {
         position: absolute;
         right: 0;
@@ -177,7 +184,7 @@ p {
 }
 .menu-toggle-btn {
     // margin: 15px;
-    margin-top: 5px;
+    margin-top: 3px;
     cursor: pointer;
     width: 20px;
     height: 20px;

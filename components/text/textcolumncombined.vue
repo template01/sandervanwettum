@@ -13,8 +13,10 @@
   <div class="is-hidden-mobile mb-40 mt-20 ml-20 mr-20">
     <div class="mb-80" v-for="item in content" :id="scrsize != 'is-screen-s' ? item.slug : ''">
       <div class="is-half pr-40">
-        <p class="is-size-6 pb-20" v-html="item.title.rendered">
+        <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
         </p>
+        <!-- <p class="is-size-6 pb-20" v-html="item.title.rendered">
+        </p> -->
         <div class="is-size-6" v-html="item.content.rendered">
         </div>
         <div v-if="item.slug==='cv'">
