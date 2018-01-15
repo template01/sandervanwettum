@@ -1,9 +1,9 @@
 <template>
-<div v-swiper:mySwiper="swiperOption" class="swiper-outer">
+<div v-swiper:mySwiperMobile="swiperOptionMobile" class="swiper-outer">
 
   <div class="swiper-wrapper">
     <div class="swiper-slide " v-for="slide in mobileSlides">
-          <img :src="slide.sizes.large">
+          <img :data-src="slide.sizes.large"  class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
     </div>
   </div>
 </div>
@@ -15,14 +15,11 @@ export default {
   data: function() {
     return {
 
-      swiperOption: {
+      swiperOptionMobile: {
         loop: true,
-        // slidesPerView: 'auto',
-        // centeredSlides: true,
-        // spaceBetween: 30,
+        lazy: true,
         effect: 'fade',
-        preloadImages: false,
-        lazyLoading: true,
+        preloadImages: true,
         wrapperClass: 'swiper-wrapper',
         slideClass: 'swiper-slide',
         // pagination: {
@@ -42,7 +39,7 @@ export default {
   },
   computed: {
     swiper() {
-      return this.$refs.mySwiper.swiper
+      return this.$refs.mySwiperMobile.swiper
     },
     mobileSlides() {
 
@@ -66,11 +63,11 @@ export default {
   props: ['slides', ],
   methods: {
     nextSlide: function() {
-      this.mySwiper.slideNext()
+      this.mySwiperMobile.slideNext()
       console.log('next')
     },
     prevSlide: function() {
-      this.mySwiper.slidePrev()
+      this.mySwiperMobile.slidePrev()
       console.log('prev')
     },
 
@@ -145,6 +142,46 @@ export default {
         // display: block;
         max-height: 100%;
     }
+
+    .swiper-lazy {
+        opacity: 0;
+        transition: opacity 0.4s;
+    }
+    .swiper-lazy-loaded {
+        opacity: 1;
+    }
+
+    @keyframes rotateanimation {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+
+    .swiper-lazy-preloader {
+        animation: rotateanimation 1s infinite;
+        animation-fill-mode: forwards;
+        width: 20px;
+        height: 20px;
+        margin-left: -10px;
+        margin-top: -10px;
+        span {
+            width: 20px;
+            height: 2px;
+            display: block;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            // position: absolute;
+        }
+        &:after {
+            background: none !important;
+            background-image: none !important;
+        }
+    }
+
 
         .swiper-slide {
             text-align: center;

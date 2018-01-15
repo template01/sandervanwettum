@@ -1,8 +1,9 @@
 <template>
   <div class="projectSlideshow p-40 " :class="nighttime ? 'is-darkgray':''">
     <!-- <transition name="slide-fade"> -->
-    <slideshowswiperdesktop :nighttime="nighttime" class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop>
-    <slideshowswipermobile :nighttime="nighttime" class="is-hidden-desktop" :slides="slides"></slideshowswipermobile>
+
+    <slideshowswipermobile v-if="scrsize != 'is-screen-l'" :nighttime="nighttime" class="is-hidden-desktop" :slides="slides"></slideshowswipermobile>
+    <slideshowswiperdesktop v-if="scrsize === 'is-screen-l'" :nighttime="nighttime" class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop>
   <!-- </transition> -->
     <div class="nighttime mb-40 mr-40">
       <div v-if="nighttime" @click="$store.commit('SET_NIGHTTIME', false);" class="fullCircle is-white"></div>
@@ -26,7 +27,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      nighttime: "nighttime"
+      nighttime: "nighttime",
     }),
   },
   props: ['slides']

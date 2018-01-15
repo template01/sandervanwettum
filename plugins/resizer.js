@@ -8,7 +8,7 @@ export default ({
     const detectScreensize = () => {
 
       var mobileBreak = 768
-      var tabletBreak = 1215
+      var tabletBreak = 1280
       var desktopBreak = 1920
 
       if (window.innerWidth < mobileBreak) {

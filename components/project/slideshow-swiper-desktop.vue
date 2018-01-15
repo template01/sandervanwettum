@@ -3,31 +3,29 @@
 <span>
 
   <div v-swiper:mySwiper="swiperOption" class="swiper-outer fadein-on-load">
-    <!-- <div class="swiper-nav swiper-nav-prev" @click="prevSlide()">
+    <div class="swiper-nav swiper-nav-prev" @click="prevSlide()">
     </div>
     <div class="swiper-nav swiper-nav-next" @click="nextSlide()">
-    </div> -->
+    </div>
     <div class="swiper-wrapper">
-      <!-- {{slides}} -->
       <div class="swiper-slide " v-for="slide in slides">
-        <!-- {{slide.caption}} -->
         <div class="columns is-gapless">
           <div class="column Aligner" v-for="(singleslide,index) in slide.single_slide">
             <template v-if="slide.single_slide.length > 1">
               <span class="mr-20" v-if="index === 0">
-                <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"></div>
-              </span>
+                <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
+</span>
 <span class="ml-20" v-else-if="index === slide.single_slide.length - 1">
-                <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"></div>
-              </span>
+                <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
+</span>
 <span class="mr-20 ml-20" v-else>
-                <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"></div>
-              </span>
+                <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
+</span>
 </template>
 <template v-else>
 <span>
-                <img :data-src="singleslide.sizes.large"  class="swiper-lazy"><div class="swiper-lazy-preloader"></div>
-              </span>
+                <img :data-src="singleslide.sizes.large"  class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
+</span>
 </template>
 </div>
 </div>
@@ -53,7 +51,7 @@ export default {
 
       swiperOption: {
         lazy: true,
-        loadPrevNext: true,
+        // loadPrevNext: true,
         loop: true,
         effect: 'fade',
         preloadImages: true,
@@ -68,7 +66,11 @@ export default {
           slideChange() {
             console.log('onSlideChangeEnd', this);
             vm.slideIndex = this.realIndex
-            vm.caption = vm.slides[vm.slideIndex].caption
+            if ('caption' in vm.slides[vm.slideIndex]) {
+              vm.caption = vm.slides[vm.slideIndex].caption
+            } else {
+              vm.caption = ''
+            }
           },
           tap() {
             console.log('onTap', this);
@@ -181,11 +183,43 @@ export default {
         display: block;
     }
     .swiper-lazy {
-      opacity: 0;
-      transition: opacity 0.4s;
+        opacity: 0;
+        transition: opacity 0.4s;
     }
-    .swiper-lazy-loaded{
-      opacity: 1;
+    .swiper-lazy-loaded {
+        opacity: 1;
+    }
+
+    @keyframes rotateanimation {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    .swiper-lazy-preloader {
+        animation: rotateanimation 1s infinite;
+        animation-fill-mode: forwards;
+        width: 20px;
+        height: 20px;
+        margin-left: -10px;
+        margin-top: -10px;
+
+        span {
+            width: 20px;
+            height: 2px;
+            display: block;
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%);
+            // position: absolute;
+        }
+        &:after {
+            background: none !important;
+            background-image: none !important;
+        }
     }
 
     .swiper-slide {
