@@ -61,10 +61,8 @@ export default {
 
           init() {
             // vm.test='hey'
-            // console.log(vm.test)
           },
           slideChange() {
-            console.log('onSlideChangeEnd', this);
             vm.slideIndex = this.realIndex
             if ('caption' in vm.slides[vm.slideIndex]) {
               vm.caption = vm.slides[vm.slideIndex].caption
@@ -73,7 +71,6 @@ export default {
             }
           },
           tap() {
-            console.log('onTap', this);
           }
         }
       }
@@ -88,24 +85,14 @@ export default {
   methods: {
     nextSlide: function() {
       this.mySwiper.slideNext()
-      // console.log(this.mySwiper)
     },
     prevSlide: function() {
       this.mySwiper.slidePrev()
-      console.log('prev')
     },
 
   },
 
   mounted() {
-    // alert('hye')
-    console.log(this.mySwiper)
-    console.log(this.mySwiper)
-    console.log(this.mySwiper)
-    console.log(this.mySwiper)
-    console.log(this.mySwiper)
-    console.log(this.mySwiper)
-    // this.mySwiper.slideNext()
   }
 }
 </script>

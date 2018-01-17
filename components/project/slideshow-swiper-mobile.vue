@@ -28,10 +28,8 @@ export default {
         // },
         on: {
           slideChange() {
-            console.log('onSlideChangeEnd', this);
           },
           tap() {
-            console.log('onTap', this);
           }
         }
       }
@@ -45,15 +43,10 @@ export default {
 
       var mobileSlides = []
       var slides = this.slides
-      console.log(slides)
-      console.log(slides.length)
       for (var i = 0, len = slides.length; i < len; i++) {
         // someFn();
-        console.log('goooo')
-        console.log(slides[i].single_slide.length)
         for (var iSingle = 0, lenSingle = slides[i].single_slide.length; iSingle < lenSingle; iSingle++) {
           // someFn();
-          // console.log(slides[i].single_slide[iSingle])
           mobileSlides.push(slides[i].single_slide[iSingle])
         }
       }
@@ -64,11 +57,9 @@ export default {
   methods: {
     nextSlide: function() {
       this.mySwiperMobile.slideNext()
-      console.log('next')
     },
     prevSlide: function() {
       this.mySwiperMobile.slidePrev()
-      console.log('prev')
     },
 
 

@@ -31,7 +31,6 @@ export default {
             store.commit('SET_NEWS', true)
           }
           store.commit('SET_NEWSCONTENT', newsRes.data[0])
-          console.log(store.state.newscontent)
         }
       }
 
@@ -48,7 +47,6 @@ export default {
       }
 
       const contentLangRes = await axios.get(store.state.apiRoot+'wp/v2/pages&slug='+params.slug)
-      console.log(contentLangRes.data.length)
       if(contentLangRes.data.length>0){
 
         //commit store changes

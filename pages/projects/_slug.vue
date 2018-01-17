@@ -53,15 +53,11 @@ export default {
 
       //hide menu
       store.commit('SET_MENU', false)
-      // console.log(store)
-      console.log(route)
       if(query.read ==="true"){
         store.commit('SET_READMORE', true)
       }
 
       const contentLangRes = await axios.get(store.state.apiRoot+'wp/v2/projects&slug='+params.slug)
-      console.log(store.state.apiRoot+'wp/v2/projects&slug='+params.slug)
-      console.log(contentLangRes.data.length)
       if(contentLangRes.data.length>0){
 
         store.commit('SET_VIEWING', '' + contentLangRes.data[0].title.rendered)

@@ -42,7 +42,6 @@ export default {
           store.commit('SET_NEWS', true)
         }
         store.commit('SET_NEWSCONTENT', newsRes.data[0])
-        console.log(store.state.newscontent)
       }
     }
 
@@ -65,10 +64,9 @@ export default {
 
 
   },
-  // 
+  //
   // watch:{
   //   getmenu: function(){
-  //     console.log(this.getmenu)
   //     if(this.getmenu){
   //       if(this.scrsize === 'is-screen-s' || window.innerHeight<768){
   //         document.getElementsByTagName('html')[0].style.overflowY = "hidden";

@@ -72,7 +72,6 @@ export default {
   methods: {
     pickrandomimage:function(input){
       var rand = input.single_image_random[Math.floor(Math.random() * input.single_image_random.length)];
-      console.log(rand)
       return rand
     },
     imgsize: function(input) {
@@ -113,6 +112,14 @@ export default {
 <style scoped lang="scss">
 * {
     box-sizing: border-box;
+}
+a{
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 .columns.is-gapless:not(:last-child) {

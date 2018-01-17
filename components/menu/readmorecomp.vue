@@ -2,7 +2,7 @@
   <transition name="slide-fade">
   <div v-if="getreadmore" class="readmorecomp is-peach" :class="scrsize">
     <headercomp :title="'Description'" :secondtitle="getviewing" :icon="'closereadmore'"></headercomp>
-    <div class="mb-20 mt-40 ml-40 mr-40 is-size-6" v-html="description">
+    <div class="mb-20 mt-40 ml-40 mr-40 is-size-6 androidFontBoostHack" v-html="description">
     </div>
   </div>
 
