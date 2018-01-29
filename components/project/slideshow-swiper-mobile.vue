@@ -59,19 +59,10 @@ export default {
   props: ['slides', ],
   methods: {
     nextSlide: function() {
-<<<<<<< HEAD
       this.mySwiper.slideNext()
-      // console.log(this.mySwiper)
     },
     prevSlide: function() {
       this.mySwiper.slidePrev()
-      console.log('prev')
-=======
-      this.mySwiperMobile.slideNext()
-    },
-    prevSlide: function() {
-      this.mySwiperMobile.slidePrev()
->>>>>>> 90029747a2423e229d31d8e2f9159662481691f8
     },
 
   },
