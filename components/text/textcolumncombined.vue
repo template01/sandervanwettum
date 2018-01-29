@@ -1,9 +1,10 @@
 <template>
-<div class="fadein-on-load">
+<div class="fadein-on-load androidFontBoostHack">
   <!-- v-if="scrsize === 'is-screen-s'" -->
   <div class="is-hidden-tablet mb-10 ">
     <div class="mb-80" v-for="item in content" :id="scrsize === 'is-screen-s' ? item.slug : ''">
-      <p class="is-size-6 pb-20" v-html="item.title.rendered"></p>
+      <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
+      </p>
       <div class="is-size-6" v-html="item.content.rendered"></div>
       <div v-if="item.slug==='cv'">
         <tableitem v-for="table in item.acf.cv_tables" :content="table.tables"></tableitem>
@@ -15,8 +16,7 @@
       <div class="is-half pr-40">
         <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
         </p>
-        <!-- <p class="is-size-6 pb-20" v-html="item.title.rendered">
-        </p> -->
+
         <div class="is-size-6" v-html="item.content.rendered">
         </div>
         <div v-if="item.slug==='cv'">

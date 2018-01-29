@@ -1,9 +1,9 @@
 <template>
 <transition name="slide-fade">
 
-  <div v-if="getnews" class="news is-gray">
+  <div v-if="getnews" class="news is-gray ">
     <headercomp :title="'News'" :secondtitle="getnewscontent.title.rendered" :icon="'news'"></headercomp>
-    <div class="mb-40 mt-40 ml-40 mr-40 is-size-6" v-html="getnewscontent.content.rendered">
+    <div class="mb-40 mt-40 ml-40 mr-40 is-size-6 androidFontBoostHack" v-html="getnewscontent.content.rendered">
     </div>
   </div>
 </transition>

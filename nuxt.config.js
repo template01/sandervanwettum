@@ -43,6 +43,11 @@ module.exports = {
   router: {
     middleware: ['closeReadmore', 'closeMenu'],
     scrollBehavior: function(to, from, savedPosition) {
+      if(to.name === 'projects-slug'){
+        window.setTimeout(function() {
+          window.scroll(0, 0)
+        }, 400)
+      }
       if(to.path === '/about' && from.path === '/about'){
 
       }else{
