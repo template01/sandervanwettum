@@ -1,6 +1,9 @@
 <template>
 <div v-swiper:mySwiperMobile="swiperOptionMobile" class="swiper-outer">
-
+  <div class="swiper-nav swiper-nav-prev" @click="prevSlide()">
+  </div>
+  <div class="swiper-nav swiper-nav-next" @click="nextSlide()">
+  </div>
   <div class="swiper-wrapper">
     <div class="swiper-slide " v-for="slide in mobileSlides">
           <img :data-src="slide.sizes.large"  class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
@@ -63,16 +66,16 @@ export default {
   props: ['slides', ],
   methods: {
     nextSlide: function() {
-      this.mySwiperMobile.slideNext()
-      console.log('next')
+      this.mySwiper.slideNext()
+      // console.log(this.mySwiper)
     },
     prevSlide: function() {
-      this.mySwiperMobile.slidePrev()
+      this.mySwiper.slidePrev()
       console.log('prev')
     },
 
-
   },
+
   mounted(){
     // this.mobileSlides()
   }
