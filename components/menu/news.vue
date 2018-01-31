@@ -2,9 +2,13 @@
 <transition name="slide-fade">
 
   <div v-if="getnews" class="news is-gray ">
-    <headercomp :title="'News'" :secondtitle="getnewscontent.title.rendered" :icon="'news'"></headercomp>
-    <div class="mb-40 mt-40 ml-40 mr-40 is-size-6 androidFontBoostHack" v-html="getnewscontent.content.rendered">
+    <headercomp :title="'News'" :secondtitle="getnewscontent.title.rendered" :icon="'news'" :newsopened="true"></headercomp>
+    <div class="mb-40 mt-40 ml-40 mr-40 is-size-6 androidFontBoostHack" >
+      <div class="blurb" v-html="getnewscontent.acf.blurb">
+      </div>
+      <p class="ml-10 leesmeer is-underlined-index" @click="$store.commit('SET_NEWSOPENED',true); $store.commit('SET_NEWS',false); $store.commit('SET_READMORE', false)">Read more</p>
     </div>
+
   </div>
 </transition>
 </template>
@@ -54,6 +58,14 @@ export default {
   /* filter:blur(100); */
 }
 
+.blurb{
+  display: inline;
+}
+
+.leesmeer{
+  display: inline;
+  cursor: pointer;
+}
 
 a {
   display: block;

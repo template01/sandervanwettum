@@ -1,9 +1,11 @@
 <template>
   <transition name="slide-fade">
-  <div v-if="getnewsopened" class="newsopened readmorecomp is-gray" :class="scrsize">
-    <headercomp :title="'News'" :secondtitle="getnewscontent.title.rendered" :icon="'closereadmore'" :isNewsopened="true"></headercomp>
-    <div class="m-40 is-size-6 androidFontBoostHack" v-html="getnewscontent.content.rendered">
-    </div>
+  <div v-if="getnewsextended" class="readmorecomp is-peach" :class="scrsize">
+    <!-- <headercomp :title="'Sander van Wettum'" :secondtitle="getviewing" :icon="'closereadmore'" :isAbout="'true'"></headercomp> -->
+    <!-- <textcolumncombinedembedded :parentid="'#aboutcomp'" :content="getaboutcontent"></textcolumncombinedembedded> -->
+
+    <!-- <div class="mb-20 mt-40 ml-40 mr-40 is-size-6 androidFontBoostHack" v-html="description"> -->
+    <!-- </div> -->
   </div>
 
 </transition>
@@ -38,8 +40,8 @@ export default {
   computed: {
     ...mapGetters({
       getviewing: "getviewing",
-      getnewscontent: "getnewscontent",
-      getnewsopened: "getnewsopened",
+      getabout: "getabout",
+      getaboutcontent: "getaboutcontent",
     }),
   },
 }
@@ -83,22 +85,5 @@ export default {
 }
 a{
   display: block;
-}
-</style>
-
-<style lang="scss">
-.newsopened{
-  img{
-    padding: 40px;
-    max-width: 100%;
-    width: 100%;
-    @media screen and (max-width: 768px) {
-      padding-top: 10px;
-      padding-bottom: 10px;
-      padding-left: 0px;
-      padding-right: 0px;
-    }
-
-  }
 }
 </style>

@@ -1,6 +1,5 @@
 import axios from 'axios'
 
-
 export const state = () => ({
   locales: ['en', 'nl'],
   locale: 'nl',
@@ -8,29 +7,18 @@ export const state = () => ({
   menu: false,
   appinitated: false,
   news: false,
+  newsopened: false,
   newscontent: [],
   aboutcontent: [],
   readmore: false,
   about: false,
   nighttime: false,
   screensize: 0,
-  // xlscreen: false,
-  // smallscreen: false,
   screensizeformat: '',
   projects: [],
   apiRoot: 'https://api.sandervanwettum.com/?rest_route=/',
   viewing: '',
 })
-
-//
-// function checkReadmore(){
-//   if (window.location.hash === '#read') {
-//     return true;
-//   }else{
-//     return false;
-//   }
-// }
-// this.$store.commit('SET_READMORE', true)
 
 
 export const getters = {
@@ -47,14 +35,6 @@ export const getters = {
     return state.nighttime
   },
 
-
-  // issmallscreen(state) {
-  //   return state.smallscreen
-  // },
-  //
-  // isxlscreen(state) {
-  //   return state.xlscreen
-  // },
   getscreensize(state) {
     return state.screensize
   },
@@ -65,6 +45,10 @@ export const getters = {
 
   getnews(state) {
     return state.news
+  },
+
+  getnewsopened(state) {
+    return state.newsopened
   },
 
   getaboutcontent(state) {
@@ -119,10 +103,14 @@ export const mutations = {
     state.about = toggle;
   },
 
-
   SET_NEWS(state, toggle) {
     state.news = toggle;
   },
+
+  SET_NEWSOPENED(state, toggle) {
+    state.newsopened = toggle;
+  },
+
   SET_NEWSCONTENT(state, data) {
     state.newscontent = data;
   },
@@ -147,6 +135,7 @@ export const mutations = {
 
 }
 
+// LOAD INITIAL DATA
 
 export const actions = {
   async nuxtServerInit({

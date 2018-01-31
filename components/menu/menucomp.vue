@@ -8,7 +8,7 @@
         Projects:
       </span>
       <div class="projects projectswrapper mb-20 mt-20 ml-20">
-        <nuxt-link  class="is-size-6" v-for="project in getprojects" :to="'/projects/'+project.slug" ><span class="is-underlined" v-html='project.title.rendered'></span></nuxt-link>
+        <nuxt-link  class="is-size-6" v-for="project in getprojects" :key="project.id" :to="'/projects/'+project.slug" ><span class="is-underlined" v-html='project.title.rendered'></span></nuxt-link>
       </div>
       <template>
         <nuxt-link class="is-size-6" to="?about=true&part=info">Info</nuxt-link>

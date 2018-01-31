@@ -31,7 +31,7 @@ export default {
         route,
         redirect
     }) {
-    
+
 
       //hide menu
       store.commit('SET_MENU', false)

@@ -5,12 +5,12 @@
   <div class="swiper-nav swiper-nav-next" @click="nextSlide()">
   </div>
   <div class="swiper-wrapper">
-    <div class="swiper-slide " v-for="slide in mobileSlides">
-          <img :data-src="slide.sizes.large"  class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
+    <div class="swiper-slide " v-for="slide in mobileSlides" :key="slide.id">
+      <img :data-src="slide.sizes.large" class="swiper-lazy">
+      <div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
     </div>
   </div>
 </div>
-
 </template>
 
 <script>
@@ -30,10 +30,8 @@ export default {
         //   dynamicBullets: true
         // },
         on: {
-          slideChange() {
-          },
-          tap() {
-          }
+          slideChange() {},
+          tap() {}
         }
       }
     }
@@ -67,7 +65,7 @@ export default {
 
   },
 
-  mounted(){
+  mounted() {
     // this.mobileSlides()
   }
 
@@ -79,7 +77,6 @@ export default {
 </style>
 
 <style lang="scss" scoped>
-
 .swiper-outer {
 
     height: calc(100% - 100px);
@@ -91,20 +88,31 @@ export default {
         position: absolute;
         z-index: 2;
 
-        &.swiper-nav-next {
-            // display: none;
-            right: 0;
-            cursor: e-resize;
-        }
-        &.swiper-nav-prev {
-            // display: none;
-            cursor: w-resize;
-        }
-
     }
 }
 
-.swiper-wrapper {
+.projectSlideshow:not(.is-darkgray) {
+    .swiper-nav-next {
+        right: 0;
+        cursor: url('/arrowRight.png'), auto;
+    }
+    .swiper-nav-prev {
+        cursor: url('/arrowLeft.png'), auto;
+    }
+}
+
+.projectSlideshow.is-darkgray {
+    .swiper-nav-next {
+        right: 0;
+        cursor: url('/arrowRightWhite.png'), auto;
+
+    }
+    .swiper-nav-prev {
+        cursor: url('/arrowLeftWhite.png'), auto;
+    }
+}
+
+.projectSlideshow {
 
     // .Aligner {
     //     display: flex;
@@ -146,12 +154,20 @@ export default {
     }
 
     @keyframes rotateanimation {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    &.is-darkgray {
+        .swiper-lazy-preloader {
+            span {
+                background: white;
+            }
+        }
     }
 
     .swiper-lazy-preloader {
@@ -176,20 +192,19 @@ export default {
         }
     }
 
+    .swiper-slide {
+        text-align: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0 !important;
+    }
+    .swiper-slide-active {
+        opacity: 1 !important;
+    }
+    .swiper-pagination {
 
-        .swiper-slide {
-            text-align: center;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0 !important;
-        }
-        .swiper-slide-active {
-            opacity: 1 !important;
-        }
-        .swiper-pagination {
-
-            > .swiper-pagination-bullet {}
-        }
+        > .swiper-pagination-bullet {}
+    }
 }
 </style>

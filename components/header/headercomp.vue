@@ -19,12 +19,20 @@
                   <span v-html="secondtitle"></span>
                 </span>
               </span>
+              <!-- @click="$store.commit('SET_NEWSOPENED',true); $store.commit('SET_NEWS',false);" -->
               <span @click="$store.commit('SET_ABOUT', false); setAboutQuery(false)" v-if="icon === 'closereadmore' && isAbout" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+
+              <span @click="$store.commit('SET_NEWSOPENED', false);" v-if="icon === 'closereadmore' && isNewsopened" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+
               <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="icon === 'openreadmore' && isprojects" class="is-absoulute-icon is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
-              <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects && !isAbout" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects && !isAbout && !isNewsopened" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+
               <span @click="$store.commit('SET_MENU', false); checkRedirct();" v-if="icon === 'close'" :class="scrsize" class="is-absoulute-icon is-hidden-mobile is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_MENU', false); " v-if="icon === 'close'" :class="scrsize"  class="is-absoulute-icon is-hidden-tablet is-hidden-desktop is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+
               <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+
               <span @click="$store.commit('SET_MENU', true)" v-if="icon === 'menu'" class="is-hidden-mobile is-pulled-right menu-toggle-btn"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_MENU', true)" v-if="icon === 'menu'" class="is-absoulute-icon is-hidden-desktop is-pulled-right menu-toggle-btn"><span></span><span></span><span></span></span>
             </template>
@@ -52,7 +60,7 @@
 // import store from 'vuex'
 export default {
   components: {},
-  props: ['title', 'secondtitle','ignore_secondtitle', 'icon', 'mobilereadmore', 'passedSrcsize','isAbout'],
+  props: ['title', 'secondtitle','ignore_secondtitle', 'icon', 'mobilereadmore', 'passedSrcsize','isAbout','isNewsopened'],
 
   computed: {
     isprojects: function() {

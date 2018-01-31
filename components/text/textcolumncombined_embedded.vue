@@ -1,17 +1,17 @@
 <template>
 <div id="aboutcomp" class=" fadein-on-load androidFontBoostHack">
   <div class="is-hidden-tablet mb-10 mr-10 ml-10 ">
-    <div class="mb-80" v-for="item in content" :id="scrsize === 'is-screen-s' ? item.slug : ''">
+    <div class="mb-80" v-for="item in content" :key="item.id" :id="scrsize === 'is-screen-s' ? item.slug : ''">
       <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
       </p>
       <div class="is-size-6" v-html="item.content.rendered"></div>
       <div v-if="item.slug==='cv'">
-        <tableitem v-for="table in item.acf.cv_tables" :content="table.tables"></tableitem>
+        <tableitem v-for="(table, index) in item.acf.cv_tables" :key="index" :content="table.tables"></tableitem>
       </div>
     </div>
   </div>
   <div class="is-hidden-mobile mb-40 mt-20 ml-40 mr-40">
-    <div class="mb-80" v-for="item in content" :id="scrsize != 'is-screen-s' ? item.slug : ''">
+    <div class="mb-80" v-for="item in content" :key="item.id" :id="scrsize != 'is-screen-s' ? item.slug : ''">
       <div class="">
         <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
         </p>
@@ -19,7 +19,7 @@
         <div class="is-size-6" v-html="item.content.rendered">
         </div>
         <div v-if="item.slug==='cv'">
-          <tableitem v-for="table in item.acf.cv_tables" :content="table.tables"></tableitem>
+          <tableitem v-for="(table, index) in item.acf.cv_tables" :key="index" :content="table.tables"></tableitem>
         </div>
       </div>
     </div>
@@ -56,7 +56,7 @@ export default {
   },
   mounted() {
     var parentid = this.parentid
-    
+
     if (this.$route.query.part === 'info') {
       document.querySelector(parentid).scroll({
         top: 0,

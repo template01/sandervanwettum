@@ -20,10 +20,11 @@
       </div>
     </div>
 
-    <aboutcomp></aboutcomp>
-
     <menucomp :projects="''">
     </menucomp>
+    <aboutcomp></aboutcomp>
+    <newscomp></newscomp>
+
 
     <nuxt class="mb-20 ml-20 mr-20" />
   </div>
@@ -40,6 +41,7 @@
 <script>
 import headercomp from '~/components/header/headercomp.vue'
 import menucomp from '~/components/menu/menucomp.vue'
+import newscomp from '~/components/menu/newscomp.vue'
 import aboutcomp from '~/components/menu/aboutcomp.vue'
 
 // import menufilter from '~/components/filter/menufilter.vue'
@@ -52,6 +54,7 @@ export default {
   components: {
     headercomp,
     menucomp,
+    newscomp,
     aboutcomp
     // menufilter
   },
@@ -70,6 +73,7 @@ export default {
 
         this.$store.commit('SET_MENU', false);
         this.$store.commit('SET_ABOUT', false);
+        this.$store.commit('SET_NEWSOPENED', false);
       }
       if (to.query.about) {
         this.$store.commit('SET_ABOUT', true);

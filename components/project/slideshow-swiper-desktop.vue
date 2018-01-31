@@ -10,7 +10,7 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide " v-for="slide in slides">
         <div class="columns is-gapless">
-          <div class="column Aligner" v-for="(singleslide,index) in slide.single_slide">
+          <div class="column Aligner" v-for="(singleslide,index) in slide.single_slide" :key="singleslide.id">
             <template v-if="slide.single_slide.length > 1">
               <span class="mr-20" v-if="index === 0">
                 <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
@@ -70,8 +70,7 @@ export default {
               vm.caption = ''
             }
           },
-          tap() {
-          }
+          tap() {}
         }
       }
     }
@@ -92,8 +91,7 @@ export default {
 
   },
 
-  mounted() {
-  }
+  mounted() {}
 }
 </script>
 
@@ -126,20 +124,30 @@ export default {
         position: absolute;
         z-index: 2;
 
-        &.swiper-nav-next {
-            // display: none;
-            right: 0;
-            cursor: e-resize;
-        }
-        &.swiper-nav-prev {
-            // display: none;
-            cursor: w-resize;
-        }
-
+    }
+}
+.projectSlideshow:not(.is-darkgray) {
+    .swiper-nav-next {
+        right: 0;
+        cursor: url('/arrowRight.png'), auto;
+    }
+    .swiper-nav-prev {
+        cursor: url('/arrowLeft.png'), auto;
     }
 }
 
-.swiper-wrapper {
+.projectSlideshow.is-darkgray {
+    .swiper-nav-next {
+        right: 0;
+        cursor: url('/arrowRightWhite.png'), auto;
+
+    }
+    .swiper-nav-prev {
+        cursor: url('/arrowLeftWhite.png'), auto;
+    }
+}
+
+.projectSlideshow {
 
     .Aligner {
         display: flex;
@@ -186,6 +194,13 @@ export default {
         }
     }
 
+    &.is-darkgray {
+        .swiper-lazy-preloader {
+            span {
+                background: white;
+            }
+        }
+    }
     .swiper-lazy-preloader {
         animation: rotateanimation 1s infinite;
         animation-fill-mode: forwards;
