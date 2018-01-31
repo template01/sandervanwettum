@@ -31,31 +31,16 @@ export default {
         route,
         redirect
     }) {
-
-      // GET ANY NEW NEWS
-      if (!store.state.news) {
-        const newsRes = await axios.get(store.state.apiRoot + 'wp/v2/news')
-        var shownews = newsRes.data[0].acf.showhide
-        if (shownews === true) {
-          if(!store.state.appinitated){
-            store.commit('SET_NEWS', true)
-          }
-          store.commit('SET_NEWSCONTENT', newsRes.data[0])
-        }
-      }
-
-      // GET PROJECT LIST START
-      if (store.state.projects.length == 0) {
-        const projectsRes = await axios.get(store.state.apiRoot + 'wp/v2/projects')
-        store.commit('SET_PROJECTS', projectsRes.data)
-      }
-      // GET PROJECT LIST END
+    
 
       //hide menu
       store.commit('SET_MENU', false)
       if(query.read ==="true"){
         store.commit('SET_READMORE', true)
       }
+
+      //hide about
+      store.commit('SET_ABOUT', false);
 
       const contentLangRes = await axios.get(store.state.apiRoot+'wp/v2/projects&slug='+params.slug)
       if(contentLangRes.data.length>0){

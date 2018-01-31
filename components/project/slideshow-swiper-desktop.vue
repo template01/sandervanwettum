@@ -117,8 +117,8 @@ export default {
 }
 .swiper-outer {
 
-    height: calc(100% - 80px);
-    margin-top: 40px;
+    height: calc(100% - 120px);
+    margin-top: 60px;
 
     .swiper-nav {
         height: 100%;

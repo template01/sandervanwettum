@@ -1,6 +1,6 @@
 <template>
-<div class="fadein-on-load androidFontBoostHack">
-  <div class="is-hidden-tablet mb-10 ">
+<div id="aboutcomp" class=" fadein-on-load androidFontBoostHack">
+  <div class="is-hidden-tablet mb-10 mr-10 ml-10 ">
     <div class="mb-80" v-for="item in content" :id="scrsize === 'is-screen-s' ? item.slug : ''">
       <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
       </p>
@@ -10,9 +10,9 @@
       </div>
     </div>
   </div>
-  <div class="is-hidden-mobile mb-40 mt-20 ml-20 mr-20">
+  <div class="is-hidden-mobile mb-40 mt-20 ml-40 mr-40">
     <div class="mb-80" v-for="item in content" :id="scrsize != 'is-screen-s' ? item.slug : ''">
-      <div class="is-half pr-40">
+      <div class="">
         <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
         </p>
 
@@ -42,6 +42,7 @@ export default {
       scrsize: "scrsize",
     }),
   },
+  props: ['content','parentid'],
   methods: {
     offset: function(elem) {
       var rect = elem.getBoundingClientRect(),
@@ -54,15 +55,17 @@ export default {
     }
   },
   mounted() {
+    var parentid = this.parentid
+    
     if (this.$route.query.part === 'info') {
-      window.scroll({
+      document.querySelector(parentid).scroll({
         top: 0,
         left: 0,
         behavior: 'smooth'
       });
     } else {
 
-      window.scroll({
+      document.querySelector(parentid).scroll({
         top: this.offset(this.$el.querySelector('#' + this.$route.query.part)).top - 40,
         left: 0,
         behavior: 'smooth'
@@ -72,22 +75,22 @@ export default {
   },
   watch: {
     '$route' (to, from) {
+      var parentid = this.parentid
       if (this.$route.query.part === 'info') {
-        window.scroll({
+        document.querySelector(parentid).scroll({
           top: 0,
           left: 0,
           behavior: 'smooth'
         });
       } else {
-        window.scroll({
+        document.querySelector(parentid).scroll({
           top: this.offset(this.$el.querySelector('#' + to.query.part)).top - 40,
           left: 0,
           behavior: 'smooth'
         });
       }
     }
-  },
-  props: ['content']
+  }
 }
 </script>
 

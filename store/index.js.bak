@@ -5,19 +5,19 @@ export const state = () => ({
   locales: ['en', 'nl'],
   locale: 'nl',
   n: 1,
-  menu: false,
-  appinitated: false,
-  news: false,
-  newscontent: [],
-  aboutcontent: [],
-  readmore: false,
-  about: false,
-  nighttime: false,
+  menu:false,
+  appinitated:false,
+  news:false,
+  newscontent:[],
+  aboutcontent:[],
+  readmore:false,
+  about:false,
+  nighttime:false,
   screensize: 0,
   // xlscreen: false,
   // smallscreen: false,
   screensizeformat: '',
-  projects: [],
+  projects:[],
   apiRoot: 'https://api.sandervanwettum.com/?rest_route=/',
   viewing: '',
 })
@@ -59,7 +59,7 @@ export const getters = {
     return state.screensize
   },
 
-  scrsize(state) {
+  scrsize(state){
     return state.screensizeformat
   },
 
@@ -144,19 +144,23 @@ export const mutations = {
     state.screensizeformat = screensizeformat;
   },
 
+  // SET_SMALLSCREEN(state, small) {
+  //   state.smallscreen = small;
+  // },
 
+  // SET_XLSCREEN(state, xl) {
+  //   state.xlscreen = xl;
+  //
+  // }
 }
 
 
 export const actions = {
-  async nuxtServerInit({
-    commit,
-    state
-  }, {
-    req
-  }) {
-
-    // GET ABOUT CONTENT
+async nuxtServerInit({
+  commit,state
+}, {
+  req
+}) {
     let [infoRes, cvRes] = await Promise.all([
       axios.get(state.apiRoot + 'wp/v2/pages&slug=' + 'info'),
       axios.get(state.apiRoot + 'wp/v2/pages&slug=' + 'cv'),
@@ -164,20 +168,6 @@ export const actions = {
 
     commit('SET_ABOUTCONTENT', [infoRes.data[0], cvRes.data[0]])
 
-    // GET ANY NEWS
-
-    const newsRes = await axios.get(state.apiRoot + 'wp/v2/news')
-    var shownews = newsRes.data[0].acf.showhide
-    if (shownews === true) {
-      if (!state.appinitated) {
-        commit('SET_NEWS', true)
-      }
-      commit('SET_NEWSCONTENT', newsRes.data[0])
-    }
-
-    // GET PROJECT LIST
-
-    const projectsRes = await axios.get(state.apiRoot + 'wp/v2/projects')
-    commit('SET_PROJECTS', projectsRes.data)
-  }
+  // commit('SET_ABOUTCONTENT', ['hey','nan'])
+}
 }

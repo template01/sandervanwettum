@@ -7,16 +7,21 @@
     <div class="columns is-gapless">
       <div class="column">
         <div class="is-hidden-touch" :class="scrsize">
-          <headercomp :class="nighttime ? 'is-white-text':''" :secondtitle="getviewing" :passedSrcsize="scrsize" :title="'Sander van Wettum'" :icon="'openreadmore'"></headercomp>
+          <headercomp v-if="$route.path === '/'" :class="nighttime ? 'is-white-text':''" :secondtitle="''" :passedSrcsize="scrsize" :title="'Sander van Wettum'" :icon="'openreadmore'"></headercomp>
+          <headercomp v-else :class="nighttime ? 'is-white-text':''" :secondtitle="getviewing" :passedSrcsize="scrsize" :title="'Sander van Wettum'" :icon="'openreadmore'"></headercomp>
         </div>
         <div class="is-hidden-desktop" :class="scrsize">
-          <headercomp :class="nighttime ? 'is-white-text':''" :secondtitle="getviewing" :passedSrcsize="scrsize" :title="'Sander van Wettum'" :icon="'menu'"></headercomp>
+          <headercomp v-if="$route.path === '/'" :class="nighttime ? 'is-white-text':''" :secondtitle="''" :passedSrcsize="scrsize" :title="'Sander van Wettum'" :icon="'menu'"></headercomp>
+          <headercomp v-else :class="nighttime ? 'is-white-text':''" :secondtitle="getviewing" :passedSrcsize="scrsize" :title="'Sander van Wettum'" :icon="'menu'"></headercomp>
         </div>
       </div>
       <div class="column is-hidden-touch">
         <headercomp :class="nighttime ? 'is-white-text':''" :title="''" :icon="'menu'"></headercomp>
       </div>
     </div>
+
+    <aboutcomp></aboutcomp>
+
     <menucomp :projects="''">
     </menucomp>
 
@@ -35,6 +40,8 @@
 <script>
 import headercomp from '~/components/header/headercomp.vue'
 import menucomp from '~/components/menu/menucomp.vue'
+import aboutcomp from '~/components/menu/aboutcomp.vue'
+
 // import menufilter from '~/components/filter/menufilter.vue'
 
 import {
@@ -45,6 +52,7 @@ export default {
   components: {
     headercomp,
     menucomp,
+    aboutcomp
     // menufilter
   },
   computed: {
@@ -55,6 +63,21 @@ export default {
       getappinitated: "getappinitated",
     }),
   },
+
+  watch: {
+    '$route' (to, from) {
+      if (!to.query.about) {
+
+        this.$store.commit('SET_MENU', false);
+        this.$store.commit('SET_ABOUT', false);
+      }
+      if (to.query.about) {
+        this.$store.commit('SET_ABOUT', true);
+        this.$store.commit('SET_VIEWING', 'About')
+
+      }
+    }
+  }
 
 }
 </script>

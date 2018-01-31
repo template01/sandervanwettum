@@ -8,17 +8,20 @@
           <template v-if="icon != 'loading'">
               <span class="is-pulled-left pr-40">
                 <span v-if="title ==='Sander van Wettum'">
-                  <nuxt-link style="display:inline-block; border:0" class="ignoreborder" to="/">Sander van Wettum</nuxt-link>
+                  <nuxt-link v-if="$route.path === '/' "style="display:inline-block; border:0" class="ignoreborder" to="/">Sander van Wettum</nuxt-link>
+                  <nuxt-link v-else class="is-underlined-index" to="/">Sander van Wettum</nuxt-link>
+
                 </span>
                 <span v-else v-html="title"></span>
-                <span v-if="secondtitle" class="pr-10">
+                <span v-if="secondtitle && !ignore_secondtitle" class="pr-10">
                   <br class="is-hidden-tablet"/>
                   <span class="is-hidden-mobile pr-10 pl-10 emdash-logostyle"><span></span></span>
                   <span v-html="secondtitle"></span>
                 </span>
               </span>
+              <span @click="$store.commit('SET_ABOUT', false); setAboutQuery(false)" v-if="icon === 'closereadmore' && isAbout" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="icon === 'openreadmore' && isprojects" class="is-absoulute-icon is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
-              <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects && !isAbout" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_MENU', false); checkRedirct();" v-if="icon === 'close'" :class="scrsize" class="is-absoulute-icon is-hidden-mobile is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_MENU', false); " v-if="icon === 'close'" :class="scrsize"  class="is-absoulute-icon is-hidden-tablet is-hidden-desktop is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
@@ -49,7 +52,7 @@
 // import store from 'vuex'
 export default {
   components: {},
-  props: ['title', 'secondtitle', 'icon', 'mobilereadmore', 'passedSrcsize'],
+  props: ['title', 'secondtitle','ignore_secondtitle', 'icon', 'mobilereadmore', 'passedSrcsize','isAbout'],
 
   computed: {
     isprojects: function() {
@@ -70,12 +73,12 @@ export default {
 
     checkRedirct: function() {
       // this.$router.push('/')
-      if (this.isprojects) {
-        return;
-      } else {
-        this.$router.push('/')
-
-      }
+      // if (this.isprojects) {
+      //   return;
+      // } else {
+      //   this.$router.push('/')
+      //
+      // }
     },
 
 
@@ -114,6 +117,16 @@ export default {
       }
 
 
+    },
+
+    setAboutQuery: function(toggle) {
+
+      // this.$router.push({ path: '/' })
+      var uri = window.location.toString();
+      if (uri.indexOf("?") > 0) {
+          var clean_uri = uri.substring(0, uri.indexOf("?"));
+          window.history.replaceState({}, document.title, clean_uri);
+      }
     }
 
   },
@@ -233,6 +246,8 @@ p {
 }
 
 .is-white-text {
+    opacity: 0;
+
     color: #FFFFFF;
     a {
         color: #FFFFFF;

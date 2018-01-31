@@ -59,10 +59,10 @@ export default {
   props: ['slides', ],
   methods: {
     nextSlide: function() {
-      this.mySwiper.slideNext()
+      this.mySwiperMobile.slideNext()
     },
     prevSlide: function() {
-      this.mySwiper.slidePrev()
+      this.mySwiperMobile.slidePrev()
     },
 
   },
@@ -82,8 +82,8 @@ export default {
 
 .swiper-outer {
 
-    height: calc(100% - 80px);
-    margin-top: 40px;
+    height: calc(100% - 100px);
+    margin-top: 50px;
 
     .swiper-nav {
         height: 100%;

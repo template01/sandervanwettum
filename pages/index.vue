@@ -1,6 +1,6 @@
 <template>
 <div class="">
-
+  <!-- <aboutcomp></aboutcomp> -->
   <indeximages :content="indexImagesContent"></indeximages>
   <!-- {{content}} -->
 </div>
@@ -8,6 +8,7 @@
 
 <script>
 import indeximages from '~/components/index/indeximages.vue'
+// import aboutcomp from '~/components/menu/aboutcomp.vue'
 import axios from 'axios'
 import {
   mapGetters
@@ -16,10 +17,12 @@ import {
 export default {
   components: {
     indeximages,
+    // aboutcomp,
   },
   computed: {
     ...mapGetters({
       getmenu: "getmenu",
+      getabout: "getabout",
       scrsize: "scrsize",
     })
   },
@@ -33,51 +36,17 @@ export default {
     redirect
   }) {
 
-    // GET ANY NEW NEWS
-    if (!store.state.news) {
-      const newsRes = await axios.get(store.state.apiRoot + 'wp/v2/news')
-      var shownews = newsRes.data[0].acf.showhide
-      if (shownews === true) {
-        if(!store.state.appinitated){
-          store.commit('SET_NEWS', true)
-        }
-        store.commit('SET_NEWSCONTENT', newsRes.data[0])
-      }
+
+    const indexImagesRes = await axios.get(store.state.apiRoot + 'wp/v2/pages&slug=index')
+    return {
+      // confetti : pop,
+      indexImagesContent: indexImagesRes.data[0],
     }
-
-    // GET PROJECT LIST START
-    if (store.state.projects.length == 0) {
-      const projectsRes = await axios.get(store.state.apiRoot + 'wp/v2/projects')
-      store.commit('SET_PROJECTS', projectsRes.data)
-    }
-    // GET PROJECT LIST END
-
-    store.commit('SET_MENU', false)
-    store.commit('SET_VIEWING', '')
-
-    // GET PROJECT LIST START
-      const indexImagesRes = await axios.get(store.state.apiRoot + 'wp/v2/pages&slug=index')
-      return {
-        // confetti : pop,
-        indexImagesContent: indexImagesRes.data[0],
-      }
 
 
   },
-  //
-  // watch:{
-  //   getmenu: function(){
-  //     if(this.getmenu){
-  //       if(this.scrsize === 'is-screen-s' || window.innerHeight<768){
-  //         document.getElementsByTagName('html')[0].style.overflowY = "hidden";
-  //       }
-  //     }else{
-  //       if(this.scrsize === 'is-screen-s' || window.innerHeight<768){
-  //         document.getElementsByTagName('html')[0].style.overflowY = "auto";
-  //       }
-  //     }
-  //   }
-  // }
+
+
 }
 </script>
 

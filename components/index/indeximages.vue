@@ -5,7 +5,7 @@
   <div class="columns is-gapless fadein-on-load is-hidden-mobile">
     <div class="first column flex-column">
 
-      <nuxt-link v-for="item in colI" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
+      <nuxt-link v-for="item in colI" v-if="!item.disable" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
         <div class="imginner">
           <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large"  :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
           <span class="is-size-6 imgcaption p-40 is-peach-opacity">{{item.linkto.post_title}}</span>
@@ -14,7 +14,7 @@
 
     </div>
     <div class="second column flex-column">
-      <nuxt-link v-for="item in colII" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
+      <nuxt-link v-for="item in colII" v-if="!item.disable" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
         <div class="imginner">
           <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large"  :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
           <span class="is-size-6 imgcaption p-40 is-peach-opacity">{{item.linkto.post_title}}</span>
@@ -28,7 +28,7 @@
   <div class="fadein-on-load is-hidden-tablet">
     <div v-for="item in imagecontent">
       <!-- {{imagecontent[0]}} -->
-      <nuxt-link v-for="itemsingle in item" :to="'projects/'+itemsingle.linkto.post_name" class="pb-20" :class="">
+      <nuxt-link v-for="itemsingle in item" v-if="!itemsingle.disable" :to="'projects/'+itemsingle.linkto.post_name" class="pb-20" :class="">
         <div class="mobilelayout">
           <img class="slidein-on-load is-horizontal-center" v-lazy="pickrandomimage(itemsingle).sizes.medium">
           <!-- <span class="imgcaption p-20 is-peach-opacity">{{itemsingle.linkto.post_title}}</span> -->

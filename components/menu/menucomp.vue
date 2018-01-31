@@ -11,9 +11,9 @@
         <nuxt-link  class="is-size-6" v-for="project in getprojects" :to="'/projects/'+project.slug" ><span class="is-underlined" v-html='project.title.rendered'></span></nuxt-link>
       </div>
       <template>
-        <nuxt-link  class="is-size-6" to="/about?part=info">Info</nuxt-link>
-        <nuxt-link  class="is-size-6" to="/about?part=cv" >CV</nuxt-link>
-        <nuxt-link  class="is-size-6" to="/about?part=contact">Contact</nuxt-link>
+        <nuxt-link class="is-size-6" to="?about=true&part=info">Info</nuxt-link>
+        <nuxt-link class="is-size-6" to="?about=true&part=cv" >CV</nuxt-link>
+        <!-- <nuxt-link  class="is-size-6" to="/about?part=contact">Contact</nuxt-link> -->
       </template>
 
     </div>

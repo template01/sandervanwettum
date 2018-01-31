@@ -48,17 +48,19 @@ export default {
       store.commit('SET_MENU', true)
     }
 
+
       store.commit('SET_VIEWING', 'About')
 
 
     let [infoRes, cvRes, contactRes] = await Promise.all([
       axios.get(store.state.apiRoot + 'wp/v2/pages&slug=' + 'info'),
       axios.get(store.state.apiRoot + 'wp/v2/pages&slug=' + 'cv'),
-      axios.get(store.state.apiRoot + 'wp/v2/pages&slug=' + 'contact'),
+      // axios.get(store.state.apiRoot + 'wp/v2/pages&slug=' + 'contact'),
     ])
 
     return {
-      content: [infoRes.data[0], cvRes.data[0], contactRes.data[0]],
+      content: [infoRes.data[0], cvRes.data[0], ],
+      // content: [infoRes.data[0], cvRes.data[0], contactRes.data[0]],
     }
     //
     // const contentLangRes = await axios.get(store.state.apiRoot+'wp/v2/pages&slug='+'info')
