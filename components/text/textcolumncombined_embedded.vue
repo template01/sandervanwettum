@@ -56,7 +56,6 @@ export default {
   },
   mounted() {
     var parentid = this.parentid
-
     if (this.$route.query.part === 'info') {
       document.querySelector(parentid).scroll({
         top: 0,
@@ -66,7 +65,7 @@ export default {
     } else {
 
       document.querySelector(parentid).scroll({
-        top: this.offset(this.$el.querySelector('#' + this.$route.query.part)).top - 40,
+        top: this.offset(this.$el.querySelector('#' + this.$route.query.part)).top - 30,
         left: 0,
         behavior: 'smooth'
       });
@@ -84,7 +83,7 @@ export default {
         });
       } else {
         document.querySelector(parentid).scroll({
-          top: this.offset(this.$el.querySelector('#' + to.query.part)).top - 40,
+          top: this.offset(this.$el.querySelector('#' + to.query.part)).top - 30,
           left: 0,
           behavior: 'smooth'
         });

@@ -6,7 +6,7 @@
       <div class="column">
         <p class="is-size-6 header">
           <template v-if="icon != 'loading'">
-              <span class="is-pulled-left pr-40">
+              <span class="androidFontBoostHack is-pulled-left pr-40">
                 <span v-if="title ==='Sander van Wettum'">
                   <nuxt-link v-if="$route.path === '/' "style="display:inline-block; border:0" class="ignoreborder" to="/">Sander van Wettum</nuxt-link>
                   <nuxt-link v-else class="is-underlined-index" to="/">Sander van Wettum</nuxt-link>
@@ -16,11 +16,11 @@
                 <span v-if="secondtitle && !ignore_secondtitle" class="pr-10">
                   <br class="is-hidden-tablet"/>
                   <span class="is-hidden-mobile pr-10 pl-10 emdash-logostyle"><span></span></span>
-                  <span v-html="secondtitle"></span>
+                  <span class="" v-html="secondtitle"></span>
                 </span>
               </span>
               <!-- @click="$store.commit('SET_NEWSOPENED',true); $store.commit('SET_NEWS',false);" -->
-              <span @click="$store.commit('SET_ABOUT', false); setAboutQuery(false)" v-if="icon === 'closereadmore' && isAbout" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_ABOUT', false); $store.commit('SET_VIEWING', getviewingproject); setAboutQuery(false)" v-if="icon === 'closereadmore' && isAbout" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
 
               <span @click="$store.commit('SET_NEWSOPENED', false);" v-if="icon === 'closereadmore' && isNewsopened" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
 
@@ -58,11 +58,21 @@
 <script>
 // import vuex from 'vuex'
 // import store from 'vuex'
+import {
+  mapGetters
+} from 'vuex'
+
 export default {
   components: {},
+
+
   props: ['title', 'secondtitle','ignore_secondtitle', 'icon', 'mobilereadmore', 'passedSrcsize','isAbout','isNewsopened'],
 
   computed: {
+    ...mapGetters({
+
+      getviewingproject: "getviewingproject",
+    }),
     isprojects: function() {
       if (this.$route.fullPath.replace(/^\/+/g, '').split("/")[0] === 'projects') {
         return true;

@@ -46,6 +46,7 @@ export default {
       if(contentLangRes.data.length>0){
 
         store.commit('SET_VIEWING', '' + contentLangRes.data[0].title.rendered)
+        store.commit('SET_VIEWING_PROJECT', '' + contentLangRes.data[0].title.rendered)
         // store.commit('SET_VIEWING', 'Project: ' + contentLangRes.data[0].title.rendered)
 
         return {

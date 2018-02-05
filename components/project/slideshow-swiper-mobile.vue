@@ -20,7 +20,9 @@ export default {
 
       swiperOptionMobile: {
         loop: true,
-        lazy: true,
+        lazy: {
+          loadPrevNext: true,
+        },
         effect: 'fade',
         preloadImages: true,
         wrapperClass: 'swiper-wrapper',

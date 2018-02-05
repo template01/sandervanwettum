@@ -64,20 +64,65 @@ export default {
       getviewing: "getviewing",
       scrsize: "scrsize",
       getappinitated: "getappinitated",
+      getmenu: "getmenu",
     }),
   },
 
+  mounted(){
+    if(this.$route.query.about){
+      this.$store.commit('SET_VIEWING', 'About')
+      this.$store.commit('SET_ABOUT', true);
+      this.$store.commit('SET_MENU', true);
+
+    }
+  },
+
+  methods:{
+
+    setOverflowDocument: function(toggle){
+      if(toggle){
+        document.body.style.position ='fixed'
+      }else{
+        document.body.style.position ='initial'
+
+      }
+
+    },
+    setAboutQuery: function(toggle) {
+
+      // this.$router.push({ path: '/' })
+      var uri = window.location.toString();
+      if (uri.indexOf("?") > 0) {
+          var clean_uri = uri.substring(0, uri.indexOf("?"));
+          window.history.replaceState({}, document.title, clean_uri);
+      }
+    }
+  },
+
   watch: {
+
+    'getmenu': function(){
+      if(this.getmenu){
+        this.setOverflowDocument(true)
+      }else{
+        this.setOverflowDocument(false)
+      }
+    },
     '$route' (to, from) {
       if (!to.query.about) {
 
         this.$store.commit('SET_MENU', false);
         this.$store.commit('SET_ABOUT', false);
         this.$store.commit('SET_NEWSOPENED', false);
+        this.setAboutQuery(false)
       }
       if (to.query.about) {
         this.$store.commit('SET_ABOUT', true);
-        this.$store.commit('SET_VIEWING', 'About')
+        var vm = this
+        setTimeout(function(){
+          vm.$store.commit('SET_VIEWING', 'About')
+        },200)
+        this.$store.commit('SET_NEWSOPENED', false);
 
       }
     }

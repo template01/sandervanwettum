@@ -3,9 +3,6 @@
   <div v-if="getabout" id="aboutcomp" class="readmorecomp is-peach" :class="scrsize">
     <headercomp :title="'Sander van Wettum'" :secondtitle="getviewing" :icon="'closereadmore'" :isAbout="'true'"></headercomp>
     <textcolumncombinedembedded :parentid="'#aboutcomp'" :content="getaboutcontent"></textcolumncombinedembedded>
-
-    <!-- <div class="mb-20 mt-40 ml-40 mr-40 is-size-6 androidFontBoostHack" v-html="description"> -->
-    <!-- </div> -->
   </div>
 
 </transition>
@@ -44,6 +41,7 @@ export default {
       getaboutcontent: "getaboutcontent",
     }),
   },
+
 }
 
 

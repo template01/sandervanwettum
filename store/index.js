@@ -18,6 +18,7 @@ export const state = () => ({
   projects: [],
   apiRoot: 'https://api.sandervanwettum.com/?rest_route=/',
   viewing: '',
+  viewingproject:''
 })
 
 
@@ -72,7 +73,12 @@ export const getters = {
 
   getviewing(state) {
     return state.viewing
+  },
+
+  getviewingproject(state) {
+    return state.viewingproject
   }
+
 
 }
 
@@ -92,8 +98,12 @@ export const mutations = {
 
   SET_VIEWING(state, name) {
     state.viewing = name;
-
   },
+
+  SET_VIEWING_PROJECT(state, name) {
+    state.viewingproject = name;
+  },
+
 
   SET_READMORE(state, toggle) {
     state.readmore = toggle;

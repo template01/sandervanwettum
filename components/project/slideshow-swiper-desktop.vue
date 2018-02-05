@@ -50,8 +50,9 @@ export default {
       caption: '',
 
       swiperOption: {
-        lazy: true,
-        // loadPrevNext: true,
+        lazy: {
+          loadPrevNext: true,
+        },
         loop: true,
         effect: 'fade',
         preloadImages: true,
@@ -118,6 +119,11 @@ export default {
     height: calc(100% - 120px);
     margin-top: 60px;
 
+    @media screen and (max-height: 800px) {
+        height: calc(100% - 80px);
+        margin-top: 40px;
+    };
+
     .swiper-nav {
         height: 100%;
         width: 50%;
@@ -174,7 +180,12 @@ export default {
     img {
         margin: 0 auto;
         width: auto;
-        max-height: calc(100vh - 160px);
+        max-height: calc(100vh - 200px);
+        @media screen and (max-height: 800px) {
+            max-height: calc(100vh - 150px);
+
+        };
+
         display: block;
     }
     .swiper-lazy {
