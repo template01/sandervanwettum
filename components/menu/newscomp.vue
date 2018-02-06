@@ -80,6 +80,9 @@ export default {
   &.is-screen-s{
     width: 100%;
   }
+  a {
+      border-bottom: 2px solid #091540;
+  }
 }
 a{
   display: block;

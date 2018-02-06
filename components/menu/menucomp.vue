@@ -13,7 +13,7 @@
       <template>
         <nuxt-link class="is-size-6" to="?about=true&part=info">Info</nuxt-link>
         <nuxt-link class="is-size-6" to="?about=true&part=cv" >CV</nuxt-link>
-        <!-- <nuxt-link  class="is-size-6" to="/about?part=contact">Contact</nuxt-link> -->
+        <nuxt-link  class="is-size-6" to="?about=true&part=newsletter">Newsletter</nuxt-link>
       </template>
 
     </div>

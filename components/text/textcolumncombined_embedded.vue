@@ -1,15 +1,19 @@
 <template>
 <div id="aboutcomp" class=" fadein-on-load androidFontBoostHack">
+  <!-- MOBILE -->
   <div class="is-hidden-tablet mb-10 mr-10 ml-10 ">
     <div class="mb-80" v-for="item in content" :key="item.id" :id="scrsize === 'is-screen-s' ? item.slug : ''">
       <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
       </p>
       <div class="is-size-6" v-html="item.content.rendered"></div>
-      <div v-if="item.slug==='cv'">
+      <div class="is-size-6" v-if="item.slug==='cv'">
         <tableitem v-for="(table, index) in item.acf.cv_tables" :key="index" :content="table.tables"></tableitem>
       </div>
     </div>
+    <newsletter class="is-size-6" :id="scrsize === 'is-screen-s' ? 'newsletter' : ''" ></newsletter>
+
   </div>
+  <!-- DESKTOP -->
   <div class="is-hidden-mobile mb-40 mt-20 ml-40 mr-40">
     <div class="mb-80" v-for="item in content" :key="item.id" :id="scrsize != 'is-screen-s' ? item.slug : ''">
       <div class="">
@@ -18,11 +22,12 @@
 
         <div class="is-size-6" v-html="item.content.rendered">
         </div>
-        <div v-if="item.slug==='cv'">
+        <div class="is-size-6" v-if="item.slug==='cv'">
           <tableitem v-for="(table, index) in item.acf.cv_tables" :key="index" :content="table.tables"></tableitem>
         </div>
       </div>
     </div>
+    <newsletter class="is-size-6" :id="scrsize != 'is-screen-s' ? 'newsletter' : ''"></newsletter>
   </div>
 </div>
 </template>
@@ -32,10 +37,12 @@ import {
   mapGetters
 } from 'vuex'
 import tableitem from '~/components/text/tableitem.vue'
+import newsletter from '~/components/text/newsletter.vue'
 
 export default {
   components: {
-    tableitem
+    tableitem,
+    newsletter
   },
   computed: {
     ...mapGetters({
@@ -93,6 +100,11 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style  lang="scss">
+#aboutcomp{
+  a{
+    border-bottom: 2px solid #091540;
+  }
+}
 
 </style>

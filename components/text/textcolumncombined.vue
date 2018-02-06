@@ -1,5 +1,6 @@
 <template>
 <div class="fadein-on-load androidFontBoostHack">
+  <!-- MOBILE -->
   <div class="is-hidden-tablet mb-10 ">
     <div class="mb-80" v-for="item in content" :id="scrsize === 'is-screen-s' ? item.slug : ''">
       <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
@@ -10,7 +11,11 @@
       </div>
     </div>
   </div>
+  <!-- DESKTOP -->
+
   <div class="is-hidden-mobile mb-40 mt-20 ml-20 mr-20">
+
+
     <div class="mb-80" v-for="item in content" :id="scrsize != 'is-screen-s' ? item.slug : ''">
       <div class="is-half pr-40">
         <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
