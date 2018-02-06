@@ -1,5 +1,5 @@
 <template>
-<div id="aboutcomp" class=" fadein-on-load androidFontBoostHack">
+<div id="aboutcompinner" class=" fadein-on-load androidFontBoostHack">
   <!-- MOBILE -->
   <div class="is-hidden-tablet mb-10 mr-10 ml-10 ">
     <div class="mb-80" v-for="item in content" :key="item.id" :id="scrsize === 'is-screen-s' ? item.slug : ''">
@@ -101,7 +101,7 @@ export default {
 </script>
 
 <style  lang="scss">
-#aboutcomp{
+#aboutcompinner{
   a{
     border-bottom: 2px solid #091540;
   }
