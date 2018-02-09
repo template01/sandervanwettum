@@ -2,8 +2,8 @@
   <div class="projectSlideshow p-40 " :class="nighttime ? 'is-darkgray':''">
     <!-- <transition name="slide-fade"> -->
 
-    <slideshowswipermobile v-if="scrsize != 'is-screen-l'" :nighttime="nighttime" class="is-hidden-desktop" :slides="slides"></slideshowswipermobile>
-    <slideshowswiperdesktop v-if="scrsize === 'is-screen-l'" :nighttime="nighttime" class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop>
+    <slideshowswipermobile v-show="scrsize != 'is-screen-l'" :nighttime="nighttime" class="is-hidden-desktop" :slides="slides"></slideshowswipermobile>
+    <slideshowswiperdesktop v-show="scrsize === 'is-screen-l' || scrsize === 'is-screen-xl'" :nighttime="nighttime" class="is-hidden-touch" :slides="slides"></slideshowswiperdesktop>
   <!-- </transition> -->
     <div class="nighttime mb-40 mr-40">
       <div v-if="nighttime" @click="$store.commit('SET_NIGHTTIME', false);" class="fullCircle is-white"></div>

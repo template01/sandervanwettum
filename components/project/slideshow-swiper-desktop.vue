@@ -1,7 +1,6 @@
 <template>
 <!-- You can find this swiper instance object in current component by the "mySwiper"  -->
 <span>
-
   <div v-swiper:mySwiper="swiperOption" class="swiper-outer fadein-on-load">
     <div class="swiper-nav swiper-nav-prev" @click="prevSlide()">
     </div>
@@ -14,28 +13,28 @@
             <template v-if="slide.single_slide.length > 1">
               <span class="mr-20" v-if="index === 0">
                 <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
-</span>
-<span class="ml-20" v-else-if="index === slide.single_slide.length - 1">
+              </span>
+              <span class="ml-20" v-else-if="index === slide.single_slide.length - 1">
                 <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
-</span>
-<span class="mr-20 ml-20" v-else>
+              </span>
+              <span class="mr-20 ml-20" v-else>
                 <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
-</span>
-</template>
-<template v-else>
-<span>
+              </span>
+            </template>
+            <template v-else>
+              <span>
                 <img :data-src="singleslide.sizes.large"  class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
-</span>
-</template>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="m-40 slideshow-caption" :class="nighttime ? 'is-white-text':''">
-  <span class="pr-40 ">{{slideIndex + 1}} / {{slides.length}} </span>
-  <span class=""> {{caption}} </span>
-</div>
+              </span>
+            </template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="m-40 slideshow-caption" :class="nighttime ? 'is-white-text':''">
+    <span class="pr-40 ">{{slideIndex + 1}} / {{slides.length}} </span>
+    <span class=""> {{caption}} </span>
+  </div>
 </span>
 </template>
 
