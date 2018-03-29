@@ -65,6 +65,8 @@ export default {
       scrsize: "scrsize",
       getappinitated: "getappinitated",
       getmenu: "getmenu",
+      getabout: "getabout",
+      getnewsopened : "getnewsopened",
     }),
   },
 
@@ -84,7 +86,6 @@ export default {
         document.body.style.position ='fixed'
       }else{
         document.body.style.position ='initial'
-
       }
 
     },
@@ -100,12 +101,22 @@ export default {
   },
 
   watch: {
-
+    getabout:function(){
+      if(this.getabout){
+        this.setOverflowDocument(true)
+      }else{
+        if(!this.getmenu){
+          this.setOverflowDocument(false)
+        }
+      }
+    },
     'getmenu': function(){
       if(this.getmenu){
         this.setOverflowDocument(true)
       }else{
-        this.setOverflowDocument(false)
+        if(!this.getabout){
+          this.setOverflowDocument(false)
+        }
       }
     },
     '$route' (to, from) {

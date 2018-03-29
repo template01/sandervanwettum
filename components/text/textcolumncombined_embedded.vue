@@ -5,12 +5,16 @@
     <div class="mb-80" v-for="item in content" :key="item.id" :id="scrsize === 'is-screen-s' ? item.slug : ''">
       <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
       </p>
-      <div class="is-size-6" v-html="item.content.rendered"></div>
+      <div  v-if="item.slug!='footer'"  class="is-size-6" v-html="item.content.rendered"></div>
       <div class="is-size-6" v-if="item.slug==='cv'">
         <tableitem v-for="(table, index) in item.acf.cv_tables" :key="index" :content="table.tables"></tableitem>
       </div>
+      <div class="is-size-6" v-if="item.slug==='newsletter'">
+        <newsletter class="mt-20" :id="scrsize === 'is-screen-s' ? 'newsletter' : ''" ></newsletter>
+      </div>
+      <div v-if="item.slug==='footer'" class="pt-20 is-size-6" v-html="item.content.rendered">
+      </div>
     </div>
-    <newsletter class="is-size-6" :id="scrsize === 'is-screen-s' ? 'newsletter' : ''" ></newsletter>
 
   </div>
   <!-- DESKTOP -->
@@ -19,15 +23,18 @@
       <div class="">
         <p v-if="!item.acf.ignore_title"class="is-size-6 pb-20" v-html="item.title.rendered">
         </p>
-
-        <div class="is-size-6" v-html="item.content.rendered">
+        <div  v-if="item.slug!='footer'" class="is-size-6" v-html="item.content.rendered">
         </div>
         <div class="is-size-6" v-if="item.slug==='cv'">
           <tableitem v-for="(table, index) in item.acf.cv_tables" :key="index" :content="table.tables"></tableitem>
         </div>
+        <div class="is-size-6" v-if="item.slug==='newsletter'">
+          <newsletter class="" :id="scrsize != 'is-screen-s' ? 'newsletter' : ''"></newsletter>
+        </div>
+        <div v-if="item.slug==='footer'" class="pt-20 is-size-6" v-html="item.content.rendered">
+        </div>
       </div>
     </div>
-    <newsletter class="is-size-6" :id="scrsize != 'is-screen-s' ? 'newsletter' : ''"></newsletter>
   </div>
 </div>
 </template>

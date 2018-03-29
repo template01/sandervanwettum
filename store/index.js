@@ -156,12 +156,14 @@ export const actions = {
   }) {
 
     // GET ABOUT CONTENT
-    let [infoRes, cvRes] = await Promise.all([
+    let [infoRes, cvRes, newsletterRes, footerRes] = await Promise.all([
       axios.get(state.apiRoot + 'wp/v2/pages&slug=' + 'info'),
       axios.get(state.apiRoot + 'wp/v2/pages&slug=' + 'cv'),
+      axios.get(state.apiRoot + 'wp/v2/pages&slug=' + 'newsletter'),
+      axios.get(state.apiRoot + 'wp/v2/pages&slug=' + 'footer'),
     ])
 
-    commit('SET_ABOUTCONTENT', [infoRes.data[0], cvRes.data[0]])
+    commit('SET_ABOUTCONTENT', [infoRes.data[0], cvRes.data[0],newsletterRes.data[0],footerRes.data[0]])
 
     // GET ANY NEWS
 

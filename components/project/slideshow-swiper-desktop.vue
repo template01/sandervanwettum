@@ -1,7 +1,7 @@
 <template>
 <!-- You can find this swiper instance object in current component by the "mySwiper"  -->
 <span>
-  <div v-swiper:mySwiper="swiperOption" class="swiper-outer fadein-on-load">
+  <div v-swiper:mySwiper="swiperOption" class="swiper-outer swiper-desktop fadein-on-load">
     <div class="swiper-nav swiper-nav-prev" @click="prevSlide()">
     </div>
     <div class="swiper-nav swiper-nav-next" @click="nextSlide()">
@@ -9,32 +9,37 @@
     <div class="swiper-wrapper">
       <div class="swiper-slide " v-for="slide in slides">
         <div class="columns is-gapless">
-          <div class="column Aligner" v-for="(singleslide,index) in slide.single_slide" :key="singleslide.id">
+          <div v-if="slide.photo_video === true" class="column Aligner" v-for="(singleslide,index) in slide.single_slide" :key="singleslide.id">
             <template v-if="slide.single_slide.length > 1">
               <span class="mr-20" v-if="index === 0">
                 <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
-              </span>
-              <span class="ml-20" v-else-if="index === slide.single_slide.length - 1">
+</span>
+<span class="ml-20" v-else-if="index === slide.single_slide.length - 1">
                 <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
-              </span>
-              <span class="mr-20 ml-20" v-else>
+</span>
+<span class="mr-10 ml-10" v-else>
                 <img :data-src="singleslide.sizes.medium" class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
-              </span>
-            </template>
-            <template v-else>
-              <span>
+</span>
+</template>
+<template v-else>
+<span>
                 <img :data-src="singleslide.sizes.large"  class="swiper-lazy"><div class="swiper-lazy-preloader"><span class="is-darkblue"></span></div>
-              </span>
-            </template>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="m-40 slideshow-caption" :class="nighttime ? 'is-white-text':''">
-    <span class="pr-40 ">{{slideIndex + 1}} / {{slides.length}} </span>
-    <span class=""> {{caption}} </span>
-  </div>
+</span>
+</template>
+</div>
+<div v-if="slide.photo_video === false" v-html="slide.single_slide_video">
+
+
+
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="m-40 slideshow-caption" :class="nighttime ? 'is-white-text':''">
+  <span v-if="slides.length>1" class="pr-40 ">{{slideIndex+1}} / {{slides.length}} </span>
+  <span class=""> {{caption}} </span>
+</div>
 </span>
 </template>
 
@@ -64,6 +69,7 @@ export default {
           },
           slideChange() {
             vm.slideIndex = this.realIndex
+
             if ('caption' in vm.slides[vm.slideIndex]) {
               vm.caption = vm.slides[vm.slideIndex].caption
             } else {
@@ -80,6 +86,16 @@ export default {
       return this.$refs.mySwiper.swiper
     }
   },
+  mounted: function() {
+    if (process.browser) {
+
+      // $(document).ready(function() {
+      // Target your .container, .wrapper, .post, etc.
+      // $('iframe[src*="youtube"]').parent().fitVids();
+      // });
+    }
+
+  },
   props: ['slides', 'nighttime'],
   methods: {
     nextSlide: function() {
@@ -91,12 +107,19 @@ export default {
 
   },
 
-  mounted() {}
 }
 </script>
 
-<style>
-
+<style lang="scss">
+  .swiper-desktop{
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 12%;
+        width: 76%;
+        height: 100%;
+    }
+  }
 </style>
 
 <style lang="scss" scoped>
@@ -125,7 +148,7 @@ export default {
 
     .swiper-nav {
         height: 100%;
-        width: 50%;
+        width: 25%;
         position: absolute;
         z-index: 2;
 

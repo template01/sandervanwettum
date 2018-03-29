@@ -135,10 +135,23 @@ a {
   }
 }
 
+@-webkit-keyframes opacityfadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+
 .fadein-on-load {
   opacity: 0;
   animation: 0.4s ease-in-out opacityfadein;
   animation-fill-mode: forwards;
+  -webkit-animation: 0.4s ease-in-out opacityfadein;
+  -webkit-animation-fill-mode: forwards;
+
 }
 
 img {

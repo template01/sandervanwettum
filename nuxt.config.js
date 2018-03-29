@@ -112,7 +112,16 @@ module.exports = {
         sizes: '128x128',
         href: '/favicon-128.png'
       }
-    ]
+    ],
+    script: [
+      { src: 'https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js' },
+      {
+      src: '/jquery.fitvids.js',
+    },
+      {
+      src: '/polyfill/polyfill.min.js',
+    }
+  ],
   },
 
 

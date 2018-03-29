@@ -7,7 +7,7 @@
 
       <nuxt-link v-for="item in colI" :key="item.id" v-if="!item.disable" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
         <div class="imginner">
-          <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large"  :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
+          <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large" :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
           <span class="is-size-6 imgcaption p-40 is-peach-opacity">{{item.linkto.post_title}}</span>
         </div>
       </nuxt-link>
@@ -16,7 +16,7 @@
     <div class="second column flex-column">
       <nuxt-link v-for="item in colII" :key="item.id" v-if="!item.disable" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
         <div class="imginner">
-          <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large"  :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
+          <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large" :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
           <span class="is-size-6 imgcaption p-40 is-peach-opacity">{{item.linkto.post_title}}</span>
         </div>
       </nuxt-link>
@@ -24,14 +24,13 @@
     </div>
   </div>
 
-<!--  MOBILE LAYOUT-->
+  <!--  MOBILE LAYOUT-->
   <div class="fadein-on-load is-hidden-tablet">
     <div v-for="(item, index) in imagecontent" :key="index">
-      <!-- {{imagecontent[0]}} -->
       <nuxt-link v-for="itemsingle in item" :key="item.id" v-if="!itemsingle.disable" :to="'projects/'+itemsingle.linkto.post_name" class="pb-20" :class="">
         <div class="mobilelayout">
-          <img class="slidein-on-load is-horizontal-center" v-lazy="pickrandomimage(itemsingle).sizes.medium">
-          <!-- <span class="imgcaption p-20 is-peach-opacity">{{itemsingle.linkto.post_title}}</span> -->
+          <img v-if="!isOldSafari" class="slidein-on-load is-horizontal-center" v-lazy="pickrandomimage(itemsingle).sizes.medium">
+          <img v-else class="slidein-on-load is-horizontal-center" :src="pickrandomimage(itemsingle).sizes.medium">
         </div>
       </nuxt-link>
 
@@ -61,7 +60,34 @@ export default {
       getnews: "getnews",
       getnewscontent: "getnewscontent",
     }),
+    isOldSafari: function() {
+      if (process.browser) {
 
+        navigator.sayswho= (function(){
+            var ua= navigator.userAgent, tem,
+            M= ua.match(/(opera|chrome|safari|firefox|msie|trident(?=\/))\/?\s*(\d+)/i) || [];
+            if(/trident/i.test(M[1])){
+                tem=  /\brv[ :]+(\d+)/g.exec(ua) || [];
+                return 'IE '+(tem[1] || '');
+            }
+            if(M[1]=== 'Chrome'){
+                tem= ua.match(/\b(OPR|Edge)\/(\d+)/);
+                if(tem!= null) return tem.slice(1).join(' ').replace('OPR', 'Opera');
+            }
+            M= M[2]? [M[1], M[2]]: [navigator.appName, navigator.appVersion, '-?'];
+            if((tem= ua.match(/version\/(\d+)/i))!= null) M.splice(1, 1, tem[1]);
+            return M;
+
+        })();
+        if(navigator.sayswho[0]==='Safari' && parseInt(navigator.sayswho[1])<9 ){
+        return  true;
+        }
+
+        // return navigator.sayswho // outputs: `Chrome 62`
+        // var is_safari =  /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || safari.pushNotification);
+        // return is_safari
+      }
+    },
     colI() {
       return _.map(this.imagecontent, 'col_i');
     },
@@ -70,7 +96,7 @@ export default {
     }
   },
   methods: {
-    pickrandomimage:function(input){
+    pickrandomimage: function(input) {
       var rand = input.single_image_random[Math.floor(Math.random() * input.single_image_random.length)];
       return rand
     },
@@ -113,37 +139,35 @@ export default {
 * {
     box-sizing: border-box;
 }
-a{
-  -webkit-touch-callout: none;
-  -khtml-user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+a {
+    -webkit-touch-callout: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 .columns.is-gapless:not(:last-child) {
     margin-bottom: 0;
 }
 
-
 @keyframes slidein {
-  0% {
-    transform: translateY(5px);
-  }
-  100% {
-    transform: translateY(0px);
-  }
+    0% {
+        transform: translateY(5px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
 }
-
 
 img[lazy=loaded] {
-  &.slidein-on-load{
-    animation: 1s ease-in-out slidein;
-    animation-fill-mode: forwards;
-  }
-}
+    &.slidein-on-load {
+        animation: 1s ease-in-out slidein;
+        animation-fill-mode: forwards;
 
+    }
+}
 
 .imginner {
     position: relative;
@@ -175,11 +199,11 @@ a {
 img {
     display: block;
 }
-.mobilelayout{
-  img {
-    // width: 100%;
-    max-width: 100%;
-  }
+.mobilelayout {
+    img {
+        // width: 100%;
+        max-width: 100%;
+    }
 }
 
 .is-small {
@@ -225,6 +249,4 @@ img {
 .is-vertical-top {
     margin-bottom: auto;
 }
-
-
 </style>
