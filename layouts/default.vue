@@ -120,12 +120,11 @@ export default {
       }
     },
     '$route' (to, from) {
+      console.log(to)
       if (!to.query.about) {
-
-        this.$store.commit('SET_MENU', false);
-        this.$store.commit('SET_ABOUT', false);
-        this.$store.commit('SET_NEWSOPENED', false);
-        this.setAboutQuery(false)
+        if(to.path === '/' && from.path != '/'){
+          this.$store.commit('SET_MENU', false);
+        }
       }
       if (to.query.about) {
         this.$store.commit('SET_ABOUT', true);

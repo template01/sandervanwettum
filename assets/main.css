@@ -11,9 +11,13 @@ body{
   max-height: 9999999px;
 }
 
+a:hover {
+    color: #0915409c;
+}
 
 ::selection {
   background: #091540;
+  color: white;
   /* WebKit/Blink Browsers */
 }
 

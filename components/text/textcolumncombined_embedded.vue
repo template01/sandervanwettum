@@ -31,7 +31,7 @@
         <div class="is-size-6" v-if="item.slug==='newsletter'">
           <newsletter class="" :id="scrsize != 'is-screen-s' ? 'newsletter' : ''"></newsletter>
         </div>
-        <div v-if="item.slug==='footer'" class="pt-20 is-size-6" v-html="item.content.rendered">
+        <div v-if="item.slug==='footer'" class="is-size-6" v-html="item.content.rendered">
         </div>
       </div>
     </div>

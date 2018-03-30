@@ -4,16 +4,16 @@
     <headercomp :title="'Menu'" :icon="'close'"></headercomp>
     <div class="mb-20 mt-40 ml-40 mr-40">
       <nuxt-link class="is-size-6" to="/">Index</nuxt-link>
-      <span class="is-size-6">
+      <span @click="test()"   class="is-size-6">
         Projects:
       </span>
       <div class="projects projectswrapper mb-20 mt-20 ml-20">
         <nuxt-link  class="is-size-6" v-for="project in getprojects" :key="project.id" :to="'/projects/'+project.slug" ><span class="is-underlined" v-html='project.title.rendered'></span></nuxt-link>
       </div>
       <template>
-        <nuxt-link class="is-size-6" to="?about=true&part=info">Info</nuxt-link>
-        <nuxt-link class="is-size-6" to="?about=true&part=cv" >CV</nuxt-link>
-        <nuxt-link  class="is-size-6" to="?about=true&part=newsletter">Newsletter</nuxt-link>
+        <p><nuxt-link @click.native="test('info')" class="is-inline is-size-6" to="?about=true&part=info">Info</nuxt-link></p>
+        <p><nuxt-link @click.native="test('cv')" class="is-inline is-size-6" to="?about=true&part=cv" >CV</nuxt-link></p>
+        <p><nuxt-link @click.native="test('newsletter')" class="is-inline is-size-6" to="?about=true&part=newsletter">Newsletter</nuxt-link></p>
       </template>
 
     </div>
@@ -40,6 +40,13 @@ export default {
       getappinitated: "getappinitated",
     })
   },
+  data:function(){
+    return{
+      aboutmenu:[
+        {}
+      ]
+    }
+  },
   components: {
     headercomp,
     news,
@@ -51,6 +58,13 @@ export default {
       this.$store.commit('SET_MENU', false)
     }
   },
+
+  methods:{
+    test: function(part){
+      this.$store.commit('SET_ABOUT', true)
+    
+    }
+  }
 
 }
 </script>

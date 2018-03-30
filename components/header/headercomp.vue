@@ -20,15 +20,15 @@
                 </span>
               </span>
               <!-- @click="$store.commit('SET_NEWSOPENED',true); $store.commit('SET_NEWS',false);" -->
-              <span @click="$store.commit('SET_ABOUT', false); $store.commit('SET_VIEWING', getviewingproject); setAboutQuery(false)" v-if="icon === 'closereadmore' && isAbout" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_ABOUT', false); resetHash(); $store.commit('SET_VIEWING', getviewingproject); setAboutQuery(false)" v-if="icon === 'closereadmore' && isAbout" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
 
               <span @click="$store.commit('SET_NEWSOPENED', false);" v-if="icon === 'closereadmore' && isNewsopened" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
 
               <span @click="$store.commit('SET_READMORE', true); setReadmoreQuery(true)" v-if="icon === 'openreadmore' && isprojects" class="is-absoulute-icon is-pulled-right menu-toggle-btn menu-readmore"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_READMORE', false); setReadmoreQuery(false)" v-if="icon === 'closereadmore' && isprojects && !isAbout && !isNewsopened" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
 
-              <span @click="$store.commit('SET_MENU', false); checkRedirct();" v-if="icon === 'close'" :class="scrsize" class="is-absoulute-icon is-hidden-mobile is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
-              <span @click="$store.commit('SET_MENU', false); " v-if="icon === 'close'" :class="scrsize"  class="is-absoulute-icon is-hidden-tablet is-hidden-desktop is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_MENU', false); resetHash();" v-if="icon === 'close'" :class="scrsize" class="is-absoulute-icon is-hidden-mobile is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
+              <span @click="$store.commit('SET_MENU', false); resetHash()" v-if="icon === 'close'" :class="scrsize"  class="is-absoulute-icon is-hidden-tablet is-hidden-desktop is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
 
               <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
               <span @click="$store.commit('SET_NEWS', false)" v-if="icon === 'news'" class="is-absoulute-icon is-pulled-right menu-toggle-btn open"><span></span><span></span><span></span></span>
@@ -89,7 +89,9 @@ export default {
 
   methods: {
 
-    checkRedirct: function() {
+    resetHash: function() {
+      this.$router.push({ query: {}})
+
       // this.$router.push('/')
       // if (this.isprojects) {
       //   return;

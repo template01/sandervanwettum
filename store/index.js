@@ -111,6 +111,12 @@ export const mutations = {
 
   SET_ABOUT(state, toggle) {
     state.about = toggle;
+    // ON OPEN CLOSE NEWS
+    if(toggle===true){
+      state.newsopened = false
+    }
+
+
   },
 
   SET_NEWS(state, toggle) {
@@ -131,6 +137,19 @@ export const mutations = {
 
   SET_MENU(state, toggle) {
     state.menu = toggle;
+    // ON CLOSE ALSO CLOSE NEWS + ABOUT
+
+    if(toggle===false){
+      state.newsopened = false
+      state.about = false
+      if(process.browser){
+        var uri = window.location.toString();
+        if (uri.indexOf("?") > 0) {
+          var clean_uri = uri.substring(0, uri.indexOf("?"));
+          window.history.replaceState({}, document.title, clean_uri);
+        }
+      }
+    }
   },
 
 
