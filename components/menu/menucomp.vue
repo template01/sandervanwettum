@@ -62,7 +62,7 @@ export default {
   methods:{
     test: function(part){
       this.$store.commit('SET_ABOUT', true)
-    
+
     }
   }
 

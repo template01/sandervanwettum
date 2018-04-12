@@ -1,13 +1,15 @@
 <template>
 <div>
   <!--  DESKTOP/TABLET LAYOUT-->
-
-  <div class="columns is-gapless fadein-on-load is-hidden-mobile">
+<!-- {{getnewsopened}} -->
+  <div v-if="showindeximages" class="columns is-gapless fadein-on-load is-hidden-mobile">
     <div class="first column flex-column">
 
       <nuxt-link v-for="item in colI" :key="item.id" v-if="!item.disable" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
         <div class="imginner">
-          <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large" :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
+          <!-- <img :src="pickrandomimage(item).sizes.large" :srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).sizes.x_large+' 2000w'"/> -->
+          <img class="" v-lazy="pickrandomimage(item).sizes.large" :data-srcset="pickrandomimage(item).sizes.medium+' 1000w, '+pickrandomimage(item).large + ' 2000w'" />
+          <!-- <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large" :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" /> -->
           <span class="is-size-6 imgcaption p-40 is-peach-opacity">{{item.linkto.post_title}}</span>
         </div>
       </nuxt-link>
@@ -16,7 +18,9 @@
     <div class="second column flex-column">
       <nuxt-link v-for="item in colII" :key="item.id" v-if="!item.disable" :to="'projects/'+item.linkto.post_name" class="" :class="[imgposition(item.index_image_position),imgsize(item.index_image_size),imgpadding(item.index_image_padding)]">
         <div class="imginner">
-          <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large" :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" />
+          <!-- <img :src="pickrandomimage(item).sizes.large"  :srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).sizes.x_large+' 2000w'"/> -->
+          <img class="" v-lazy="pickrandomimage(item).sizes.large" :data-srcset="pickrandomimage(item).sizes.medium+' 1000w, '+pickrandomimage(item).large + ' 2000w'" />
+          <!-- <img class="slidein-on-load" v-lazy="pickrandomimage(item).sizes.large" :data-srcset="pickrandomimage(item).sizes.large+' 1000w, '+pickrandomimage(item).x_large + ' 2000w'" /> -->
           <span class="is-size-6 imgcaption p-40 is-peach-opacity">{{item.linkto.post_title}}</span>
         </div>
       </nuxt-link>
@@ -49,14 +53,21 @@ import {
 import _ from 'lodash'
 
 export default {
+  // mounted(){
+  //   console.log(  this.$Lazyload)
+  // },
 
   data: function() {
     return {
-      imagecontent: this.content.acf.index_images
+      imagecontent: this.content.acf.index_images,
+      showindeximages: true
     }
   },
   computed: {
     ...mapGetters({
+      getmenu: "getmenu",
+      getabout: "getabout",
+      getnewsopened: "getnewsopened",
       getnews: "getnews",
       getnewscontent: "getnewscontent",
     }),
@@ -128,7 +139,30 @@ export default {
       }
     }
   },
-  props: ['content']
+  props: ['content'],
+  watch:{
+    "getmenu":function(){
+      var vm = this
+    },
+    "getabout":function(){
+      if(this.getabout){
+        this.showindeximages = false
+      }else{
+        this.showindeximages = true
+
+      }
+
+    },
+    "getnewsopened":function(){
+      if(this.getnewsopened){
+        this.showindeximages = false
+      }else{
+        this.showindeximages = true
+
+      }
+    },
+
+  }
 
 }
 </script>
