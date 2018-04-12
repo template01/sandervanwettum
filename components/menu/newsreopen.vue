@@ -1,8 +1,10 @@
 <template>
+<div>
 
-<transition-group name="slide-fade">
+<!-- <transition-group name="slide-fade"> -->
 
-  <template  v-if="!getnews && getnewscontent.length>0">
+
+  <template  v-if="!getnews && typeof getnewscontent === 'object' ">
 
     <div v-bind:key="1" class="newsReopenDesktop is-hidden-touch ">
       <div class="mb-40 mt-40 ml-40 mr-40">
@@ -16,8 +18,9 @@
     </div>
   </template>
 
-</transition-group>
+<!-- </transition-group> -->
 
+</div>
 </template>
 
 <script>

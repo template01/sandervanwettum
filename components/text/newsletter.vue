@@ -17,7 +17,7 @@
 
     </form>
   </div>
-  <p :style="errors.length>0 ? {'opacity':1}: {'opacity':0}" class="mt-10">
+  <p v-if="errors.length>0" :style="errors.length>0 ? {'opacity':1}: {'opacity':0}" class="mt-10">
     Error: <span v-for="(error,index) in errors" v-html="error+ (index===errors.length-1 ?' required.':' and ')"></span>
   </p>
 </div>

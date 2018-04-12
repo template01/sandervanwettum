@@ -8,7 +8,7 @@ export const state = () => ({
   appinitated: false,
   news: false,
   newsopened: false,
-  newscontent: [],
+  newscontent: '',
   aboutcontent: [],
   readmore: false,
   about: false,

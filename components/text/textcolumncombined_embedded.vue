@@ -78,7 +78,7 @@ export default {
       });
     } else {
 
-      document.querySelector(parentid).scroll({
+      document.querySelector(parentid).scrollBy({
         top: this.offset(this.$el.querySelector('#' + this.$route.query.part)).top - 30,
         left: 0,
         behavior: 'smooth'
@@ -96,7 +96,7 @@ export default {
           behavior: 'smooth'
         });
       } else {
-        document.querySelector(parentid).scroll({
+        document.querySelector(parentid).scrollBy({
           top: this.offset(this.$el.querySelector('#' + to.query.part)).top - 30,
           left: 0,
           behavior: 'smooth'
